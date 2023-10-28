@@ -18,7 +18,7 @@ function Homepage() {
                 >
                   {" "}
                   With lightning-fast precision and an intuitive interface,{" "}
-                  <br /> we've revolutionized the way you navigate the web.
+                  we've revolutionized the way you navigate the web.
                 </p>
               </div>
               <form className="d-flex mt-3" role="search">
