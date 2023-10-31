@@ -1,5 +1,6 @@
 import React from "react";
 import "../Global.css";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   return (
@@ -28,7 +29,7 @@ function Homepage() {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn text-black bg-white" type="submit">
+                <button className="btn text-black  bg-global" type="submit">
                   Search
                 </button>
               </form>
@@ -36,7 +37,7 @@ function Homepage() {
           </div>
         </div>
         <div className="d-flex align-items-center flex-column flex-md-row justify-content-around ">
-          <div className="card p-3 width-global-80 global-bg-cards">
+          <div className="card p-1 width-global-80 global-bg-cards">
             <div className="m-3 text-center text-white">
               Mini Printer: Blue
             </div>
@@ -46,9 +47,9 @@ function Homepage() {
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <a href="#" className="btn btn-primary">
+              <Link to='/Details' className="btn btn-primary">
                 Details
-              </a>
+              </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>
@@ -62,9 +63,9 @@ function Homepage() {
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <a href="#" className="btn btn-primary">
+              <Link to='/Details'  className="btn btn-primary">
                 Details
-              </a>
+              </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>

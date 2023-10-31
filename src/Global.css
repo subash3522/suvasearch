@@ -20,6 +20,10 @@
   background-color: rgb(181, 179, 179);
 }
 
+.bg-global{
+  background-color: #DBBE00;
+}
+
 @media (max-width: 767px) {
   .width-global-80 {
     width: 70%;
