@@ -1,10 +1,13 @@
 import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
+import Login from "./Login";
+import Blured from "./Blured";
 
-function Homepage() {
+function Homepage({loginCheck}) {
   return (
     <>
+    
       <div className="whole-body ">
         <div className="container-fluid  d-flex align-items-center justify-content-center h-global">
           <div className="text-white">
@@ -29,7 +32,7 @@ function Homepage() {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="btn text-black  bg-global" type="submit">
+                <button className=" text-black  bg-global" type="submit">
                   Search
                 </button>
               </form>
@@ -72,6 +75,14 @@ function Homepage() {
         </div>
       <div className='container-fluid d-flex align-items-center justify-content-center ' style={{height:'6vh'}}> <div className="text-white"></div> </div>
       </div>
+      
+        {loginCheck && <Login/>}
+        
+    
+      
+      
+      {loginCheck && <Blured/>}
+      
     </>
   );
 }

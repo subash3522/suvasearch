@@ -2,7 +2,7 @@ import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({loginClicker}) {
   return (
     <>
       <nav
@@ -27,6 +27,7 @@ function Navbar() {
         </div>
 
         <div
+        onClick={()=>{loginClicker(); console.log('hello');}}
           className="m-1 text-align-center"
           style={{
             border: "solid black 1px",
