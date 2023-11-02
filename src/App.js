@@ -7,6 +7,7 @@ import Homepage from './Pages/Homepage';
 import Footer from './Pages/Footer';
 import { useState } from 'react';
 import Signup from './Pages/Signup';
+import Login from './Pages/Login';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
     loginClicker= {loginClicker}
    
     />
+   
     <Routes>
       <Route path="/" element={<Homepage  loginCheck = {loginCheck}/>} />
       <Route path="/Details" element={<Details />} />

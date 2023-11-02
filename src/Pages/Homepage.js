@@ -1,8 +1,10 @@
 import React from "react";
 import "../Global.css";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router , Switch, Route, Routes, Link} from "react-router-dom";
+
 import Login from "./Login";
 import Blured from "./Blured";
+import Signup from "./Signup";
 
 function Homepage({loginCheck}) {
   return (
@@ -76,10 +78,10 @@ function Homepage({loginCheck}) {
       <div className='container-fluid d-flex align-items-center justify-content-center ' style={{height:'6vh'}}> <div className="text-white"></div> </div>
       </div>
       
-        {loginCheck && <Login/>}
-        
-    
-      
+        {loginCheck && <Signup/>}
+       {/* <Routes>
+    <Route path="/login" element = {<Login/>}></Route>
+    </Routes>  */}
       
       {loginCheck && <Blured/>}
       
