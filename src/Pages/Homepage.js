@@ -79,9 +79,9 @@ function Homepage({loginCheck}) {
       </div>
       
         {loginCheck && <Signup/>}
-       {/* <Routes>
+       <Routes>
     <Route path="/login" element = {<Login/>}></Route>
-    </Routes>  */}
+    </Routes> 
       
       {loginCheck && <Blured/>}
       

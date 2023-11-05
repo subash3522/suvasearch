@@ -8,6 +8,7 @@ import Footer from './Pages/Footer';
 import { useState } from 'react';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
+import Products from './Shopping Apis/Products';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Homepage  loginCheck = {loginCheck}/>} />
       <Route path="/Details" element={<Details />} />
+      <Route path='/Products' element = {<Products/>}/>
     </Routes>
   </Router>
  

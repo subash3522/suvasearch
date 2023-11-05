@@ -2,7 +2,7 @@ import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
 
-function Navbar({loginClicker}) {
+function Navbar({ loginClicker }) {
   return (
     <>
       <nav
@@ -17,17 +17,19 @@ function Navbar({loginClicker}) {
             border: "solid black 1px",
             borderRadius: "5px",
           }}
-        ><Link className= 'text-decoration-none text-black' to='/'>
-          {" "}
-          suvasearch{" "}
+        >
+          <Link className="text-decoration-none text-black" to="/">
+            {" "}
+            suvasearch{" "}
           </Link>
         </div>
         <div className="" style={{ visibility: "hidden" }}>
           list
         </div>
-
+<div className="d-flex">
+  
         <div
-        onClick={()=>{loginClicker(); console.log('hello');}}
+          onClick={()=>loginClicker()}
           className="m-1 text-align-center"
           style={{
             border: "solid black 1px",
@@ -36,10 +38,21 @@ function Navbar({loginClicker}) {
             padding: "8px 24px",
           }}
         >
-          Login
+          
+            Login
+        
+        </div>
+        <div
+        className="m-1 text-align-center"
+        style={{
+          border: "solid black 1px",
+          backgroundColor: "#2D2C2C",
+          color: "#FFDD00",
+          padding: "8px 24px"}}
+        ><Link to='/Products' className="text-white text-decoration-none">Shopping</Link></div>
         </div>
       </nav>
-     
+    
     </>
   );
 }
