@@ -5,13 +5,23 @@ import Cart from './Cart.js'
 
 function Products() {
   const [apiProducts, setApiProducts] = useState([]);
+  const [cart, setCart] = useState([])
 
-  const fetchProduct = async () => {
-    await axios.get("https://fakestoreapi.com/products").then((res) => {
+  const fetchProduct = async (order) => {
+    await axios.get(`https://fakestoreapi.com/products`).then((res) => {
       console.log(res);
       setApiProducts(res.data);
     });
   };
+
+  const handleAddToCart = (product)=>{
+
+    const productIndex = cart.findIndex((value)=>value.id === product.id)
+
+    if(productIndex !==-1) {
+
+    }
+  }
 
   useEffect(() => {
     fetchProduct();
@@ -19,6 +29,8 @@ function Products() {
 
   return (
     <>
+    {/* <div onClick={()=>fetchProduct('desc')}>Desc</div>
+    <div onClick={()=>fetchProduct('asc')}>Asc</div> */}
       <div
         className="container-fluid flex-wrap border"
         style={{
@@ -44,9 +56,48 @@ function Products() {
       </div>
         ))}
       </div>
-      <Routes>
+      {/* <Routes>
         <Route path="/Cart" element = {<Cart/>}/>
-      </Routes>
+      </Routes> */}
+
+      
+  <button
+    className="btn btn-primary "
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasWithBothOptions"
+    aria-controls="offcanvasWithBothOptions"
+    style={{position:'absolute', top:'50px'}}
+  >
+    Cart Details
+  </button>
+  <div
+    className="offcanvas offcanvas-start"
+    data-bs-scroll="true"
+    tabIndex={-1}
+    id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel"
+  >
+    <div className="offcanvas-header">
+      <h5 className="offcanvas-title" id="offcanvasWithBothOptionsLabel">
+       Your Total Cart
+      </h5>
+      <button
+        type="button"
+        className="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      />
+    </div>
+    <div className="offcanvas-body">
+      <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+  </div>
+
+
+ 
+
+
     </>
   );
 }
