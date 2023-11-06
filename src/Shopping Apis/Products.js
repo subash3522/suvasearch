@@ -6,6 +6,7 @@ import Cart from "./Cart.js";
 function Products() {
   const [apiProducts, setApiProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [productPrice, setProductPrice] = useState(0)
 
   const fetchProduct = async (order) => {
     await axios.get(`https://fakestoreapi.com/products`).then((res) => {
@@ -20,8 +21,10 @@ function Products() {
       const updateCart = [...cart];
       updateCart[productIndex].quantity += 1;
       setCart(updateCart);
+      setProductPrice(totalPrice(product))
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
+      setProductPrice(totalPrice(product))
     }
   };
   console.log(cart);
@@ -31,6 +34,7 @@ function Products() {
     const updateCart = [...cart];
     updateCart[productIndex].quantity += 1;
     setCart(updateCart);
+    setProductPrice(totalPrice(product))
   };
   const handleDecrement = (product) => {
     const productIndex = cart.findIndex((value) => value.id === product.id);
@@ -39,12 +43,28 @@ function Products() {
 
       updateCart[productIndex].quantity -= 1;
       setCart(updateCart);
+      setProductPrice(totalPrice(product))
     }
     else return
   };
 
-  const totalPrice = ()=>{
+  const handleCartRemove = (value,index)=>{
+    const updateCart = [...cart];
+    updateCart.splice(index,1);
+    setCart(updateCart)
+    setProductPrice(totalPrice(updateCart))
+
     
+
+  }
+  useEffect(() => {
+    setProductPrice(totalPrice());
+  }, [cart]);
+
+  
+  const totalPrice = (price)=>{
+    return cart.reduce((acc,value)=>acc + value.quantity*value.price,0)
+
   }
 
   useEffect(() => {
@@ -82,7 +102,7 @@ function Products() {
               <p className="card-text"></p>
               <button
                 className="btn btn-primary"
-                onClick={() => handleAddToCart(value)}
+                onClick={() => {handleAddToCart(value)}}
               >
                 Add to Cart
               </button>
@@ -107,7 +127,7 @@ function Products() {
           width="16"
           height="16"
           fill="currentColor"
-          class="bi bi-cart"
+          className="bi bi-cart"
           viewBox="0 0 16 16"
         >
           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
@@ -140,15 +160,17 @@ function Products() {
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Action</th>
+                <th scope="col">Remove</th>
               </tr>
             </thead>
             {cart.map((value, index) => (
-              <tbody>
+              <tbody key={value.id}>
                 <tr>
                   <th scope="row">{index + 1}</th>
                   <td>{value.title}</td>
                   <td>{value.price}</td>
                   <td>{value.quantity}</td>
+                  
                   <td>
                     {" "}
                     <span>
@@ -158,10 +180,12 @@ function Products() {
                       <button onClick={()=>handleDecrement(value)}>-</button>
                     </span>
                   </td>
+                  <td onClick={()=>{handleCartRemove(index)}}>Remove</td>
                 </tr>
               </tbody>
             ))}
           </table>
+          {productPrice}
         </div>
       </div>
     </>
