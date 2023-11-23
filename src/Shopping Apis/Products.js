@@ -6,14 +6,45 @@ import Cart from "./Cart.js";
 function Products() {
   const [apiProducts, setApiProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [productPrice, setProductPrice] = useState(0)
+  const [productPrice, setProductPrice] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(5);
 
+  //for pagination
+  const totalProducts = 20;
+  const productPerPage = 5;
+  const totalPages = 4;
+
+  const renderPagenumbers = () => {
+    const pagination = [];
+
+    for (let index = 1; index < totalPages + 1; index++) {
+      pagination.push(
+        <li className="page-item" onClick={() => renderProducts(index)}>
+          <div className="page-link" >
+            {index}
+          </div>
+        </li>
+      );
+    }
+    return pagination;
+  };
+
+  const renderProducts = (pageno) => {
+    setEndIndex(pageno * productPerPage);
+
+    setStartIndex(pageno * productPerPage - productPerPage);
+  };
+ 
+
+  console.log(startIndex, endIndex);
   const fetchProduct = async (order) => {
     await axios.get(`https://fakestoreapi.com/products`).then((res) => {
       setApiProducts(res.data);
     });
   };
 
+  console.log(apiProducts.length);
   const handleAddToCart = (product) => {
     const productIndex = cart.findIndex((value) => value.id === product.id);
 
@@ -21,51 +52,43 @@ function Products() {
       const updateCart = [...cart];
       updateCart[productIndex].quantity += 1;
       setCart(updateCart);
-      setProductPrice(totalPrice(product))
+      setProductPrice(totalPrice(product));
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
-      setProductPrice(totalPrice(product))
+      setProductPrice(totalPrice(product));
     }
   };
-  console.log(cart);
 
   const handleIncrement = (product) => {
     const productIndex = cart.findIndex((value) => value.id === product.id);
     const updateCart = [...cart];
     updateCart[productIndex].quantity += 1;
     setCart(updateCart);
-    setProductPrice(totalPrice(product))
+    setProductPrice(totalPrice(product));
   };
   const handleDecrement = (product) => {
     const productIndex = cart.findIndex((value) => value.id === product.id);
     const updateCart = [...cart];
-    if(product.quantity>0){
-
+    if (product.quantity > 0) {
       updateCart[productIndex].quantity -= 1;
       setCart(updateCart);
-      setProductPrice(totalPrice(product))
-    }
-    else return
+      setProductPrice(totalPrice(product));
+    } else return;
   };
 
-  const handleCartRemove = (value,index)=>{
+  const handleCartRemove = (value, index) => {
     const updateCart = [...cart];
-    updateCart.splice(index,1);
-    setCart(updateCart)
-    setProductPrice(totalPrice(updateCart))
-
-    
-
-  }
+    updateCart.splice(index, 1);
+    setCart(updateCart);
+    setProductPrice(totalPrice(updateCart));
+  };
   useEffect(() => {
     setProductPrice(totalPrice());
   }, [cart]);
 
-  
-  const totalPrice = (price)=>{
-    return cart.reduce((acc,value)=>acc + value.quantity*value.price,0)
-
-  }
+  const totalPrice = (price) => {
+    return cart.reduce((acc, value) => acc + value.quantity * value.price, 0);
+  };
 
   useEffect(() => {
     fetchProduct();
@@ -75,6 +98,9 @@ function Products() {
     <>
       {/* <div onClick={()=>fetchProduct('desc')}>Desc</div>
     <div onClick={()=>fetchProduct('asc')}>Asc</div> */}
+      <nav aria-label="Page navigation example">
+        <ul className="pagination">{renderPagenumbers()}</ul>
+      </nav>
       <div
         className="container-fluid flex-wrap border"
         style={{
@@ -84,7 +110,7 @@ function Products() {
           gridTemplateColumns: "repeat(auto-fit,279px",
         }}
       >
-        {apiProducts.map((value, index) => (
+        {apiProducts.slice(startIndex, endIndex).map((value, index) => (
           <div className="card" style={{ width: "18rem" }} key={value.id}>
             <img
               src={value.image}
@@ -102,7 +128,9 @@ function Products() {
               <p className="card-text"></p>
               <button
                 className="btn btn-primary"
-                onClick={() => {handleAddToCart(value)}}
+                onClick={() => {
+                  handleAddToCart(value);
+                }}
               >
                 Add to Cart
               </button>
@@ -170,17 +198,23 @@ function Products() {
                   <td>{value.title}</td>
                   <td>{value.price}</td>
                   <td>{value.quantity}</td>
-                  
+
                   <td>
                     {" "}
                     <span>
                       <button onClick={() => handleIncrement(value)}>+</button>
                     </span>{" "}
                     <span>
-                      <button onClick={()=>handleDecrement(value)}>-</button>
+                      <button onClick={() => handleDecrement(value)}>-</button>
                     </span>
                   </td>
-                  <td onClick={()=>{handleCartRemove(index)}}>Remove</td>
+                  <td
+                    onClick={() => {
+                      handleCartRemove(index);
+                    }}
+                  >
+                    Remove
+                  </td>
                 </tr>
               </tbody>
             ))}

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Products from './Shopping Apis/Products';
+import ReducerPage from './ReducerPage';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Route path="/" element={<Homepage  loginCheck = {loginCheck}/>} />
       <Route path="/Details" element={<Details />} />
       <Route path='/Products' element = {<Products/>}/>
+      <Route path='/ReducerPage' element = {<ReducerPage/>}/>
     </Routes>
   </Router>
  

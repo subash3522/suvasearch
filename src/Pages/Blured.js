@@ -4,7 +4,7 @@ import "../Global.css";
 function Blured() {
   return (
     <>
-    <div className='blurred'>hello</div>
+    <div className='blurred'></div>
    
     </>
   )
