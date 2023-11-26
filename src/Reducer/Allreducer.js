@@ -1,8 +1,10 @@
-import countTheNumber from "./Index";
+import { countTheNumber } from "./Index";
+import { loginToggler } from "./Index";
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
-    countTheNumber
+    abc:countTheNumber,
+    xyz:loginToggler
 })
 
 export default rootReducer

@@ -1,8 +1,15 @@
 import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
+import {  useDispatch } from "react-redux";
+import { loginToggler } from "../Reducer/Index";
+import { tfTogler } from "../Actioncreator/Index";
+
+
 
 function Navbar({ loginClicker }) {
+  const dispatch = useDispatch()
+  
   return (
     <>
       <nav
@@ -29,7 +36,8 @@ function Navbar({ loginClicker }) {
 <div className="d-flex">
   
         <div
-          onClick={()=>loginClicker()}
+          // onClick={()=>loginClicker()}
+          onClick={()=>dispatch(tfTogler())}
           className="m-1 text-align-center"
           style={{
             border: "solid black 1px",
@@ -49,7 +57,7 @@ function Navbar({ loginClicker }) {
           backgroundColor: "#2D2C2C",
           color: "#FFDD00",
           padding: "8px 24px"}}
-        ><Link to='/Products' className="text-white text-decoration-none">Shopping</Link></div>
+        ><Link to='/Products' className="text-white text-decoration-none">Explore</Link></div>
         </div>
       </nav>
     

@@ -5,8 +5,10 @@ import { BrowserRouter as Router , Switch, Route, Routes, Link} from "react-rout
 import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
+import { useSelector } from "react-redux";
 
 function Homepage({loginCheck}) {
+  const loginTogglerState = useSelector((state) => state.loginToggler);
   return (
     <>
     
@@ -78,12 +80,14 @@ function Homepage({loginCheck}) {
       <div className='container-fluid d-flex align-items-center justify-content-center ' style={{height:'6vh'}}> <div className="text-white"></div> </div>
       </div>
       
-        {loginCheck && <Signup/>}
+        {/* {loginCheck && <Signup/>} */}
+        {loginTogglerState && <Signup/>}
        <Routes>
     <Route path="/login" element = {<Login/>}></Route>
     </Routes> 
       
-      {loginCheck && <Blured/>}
+      {/* {loginCheck && <Blured/>} */}
+      {loginTogglerState && <Blured/>}
       
     </>
   );

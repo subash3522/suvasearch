@@ -10,6 +10,8 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import Products from './Shopping Apis/Products';
 import ReducerPage from './ReducerPage';
+import Homepage1 from './Pages/Homepage1';
+import HomeRouter from './Pages/HomeRouter';
 
 function App() {
 
@@ -28,7 +30,7 @@ function App() {
     />
    
     <Routes>
-      <Route path="/" element={<Homepage  loginCheck = {loginCheck}/>} />
+      <Route path="/" element={<HomeRouter  loginCheck = {loginCheck}/> } />
       <Route path="/Details" element={<Details />} />
       <Route path='/Products' element = {<Products/>}/>
       <Route path='/ReducerPage' element = {<ReducerPage/>}/>
