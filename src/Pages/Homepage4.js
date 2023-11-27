@@ -5,11 +5,11 @@ function Homepage4() {
  <>
  <div
         className="container d-flex flex-column flex-md-row align-items-center justify-content-evenly"
-        style={{ height: "80vh" }}
+        style={{ minHeight: "80vh" }}
       >
         <div
-          className="d-flex w-md-50 w-100"
-          style={{ height: "90%"}}
+          className="d-flex w-md-50 w-100 m-3"
+          style={{  height: "90%"}}
         >
           <div className="d-flex flex-column align-items-center justify-content-center">
             <p className="myfont text-center" style={{ width: "60%" }}>
