@@ -1,18 +1,23 @@
 import React from "react";
 import "../Global.css";
-import { BrowserRouter as Router , Switch, Route, Routes, Link} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Routes,
+  Link,
+} from "react-router-dom";
 
 import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
 import { useSelector } from "react-redux";
 
-function Homepage({loginCheck}) {
+function Homepage({ loginCheck }) {
   const loginTogglerState = useSelector((state) => state.loginToggler);
   return (
     <>
-    
-      <div className="whole-body ">
+      <div className="whole-body " style={{height:'100vh'}}>
         <div className="container-fluid  d-flex align-items-center justify-content-center h-global">
           <div className="text-white">
             <div className="d-flex flex-column">
@@ -43,52 +48,53 @@ function Homepage({loginCheck}) {
             </div>
           </div>
         </div>
-        <div className="d-flex align-items-center flex-column flex-md-row justify-content-around ">
+        {/* <div className="d-flex align-items-center flex-column flex-md-row justify-content-around ">
           <div className="card p-1 width-global-80 global-bg-cards">
-            <div className="m-3 text-center text-white">
-              Mini Printer: Blue
-            </div>
+            <div className="m-3 text-center text-white">Mini Printer: Blue</div>
             <img
               src="https://i0.wp.com/starlight-kw.com/wp-content/uploads/2023/04/2-2.jpg?fit=1000%2C1000&ssl=1"
               className="card-img-top"
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <Link to='/Details' className="btn btn-primary">
+              <Link to="/Details" className="btn btn-primary">
                 Details
               </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>
           <div className="card p-1 width-global-80 global-bg-cards">
-            <div className="m-3 text-center text-white">
-              Mini Printer: Pink
-            </div>
+            <div className="m-3 text-center text-white">Mini Printer: Pink</div>
             <img
               src="https://i0.wp.com/starlight-kw.com/wp-content/uploads/2023/04/2-2.jpg?fit=1000%2C1000&ssl=1"
               className="card-img-top"
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <Link to='/Details'  className="btn btn-primary">
+              <Link to="/Details" className="btn btn-primary">
                 Details
               </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>
-        </div>
-      <div className='container-fluid d-flex align-items-center justify-content-center ' style={{height:'6vh'}}> <div className="text-white"></div> </div>
+        </div> */}
+        {/* <div
+          className="container-fluid d-flex align-items-center justify-content-center "
+          style={{ height: "6vh" }}
+        >
+          {" "}
+          <div className="text-white"></div>
+        </div> */}
       </div>
-      
-        {/* {loginCheck && <Signup/>} */}
-        {loginTogglerState && <Signup/>}
-       <Routes>
-    <Route path="/login" element = {<Login/>}></Route>
-    </Routes> 
-      
+
+      {/* {loginCheck && <Signup/>} */}
+      {loginTogglerState && <Signup />}
+      <Routes>
+        <Route path="/login" element={<Login />}></Route>
+      </Routes>
+
       {/* {loginCheck && <Blured/>} */}
-      {loginTogglerState && <Blured/>}
-      
+      {loginTogglerState && <Blured />}
     </>
   );
 }
