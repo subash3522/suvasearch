@@ -50,41 +50,45 @@ function Homepage({ loginCheck }) {
         </div>
         {/* <div className="d-flex align-items-center flex-column flex-md-row justify-content-around ">
           <div className="card p-1 width-global-80 global-bg-cards">
-            <div className="m-3 text-center text-white">Mini Printer: Blue</div>
+            <div className="m-3 text-center text-white">
+              Mini Printer: Blue
+            </div>
             <img
               src="https://i0.wp.com/starlight-kw.com/wp-content/uploads/2023/04/2-2.jpg?fit=1000%2C1000&ssl=1"
               className="card-img-top"
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <Link to="/Details" className="btn btn-primary">
+              <Link to='/Details' className="btn btn-primary">
                 Details
               </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>
           <div className="card p-1 width-global-80 global-bg-cards">
-            <div className="m-3 text-center text-white">Mini Printer: Pink</div>
+            <div className="m-3 text-center text-white">
+              Mini Printer: Pink
+            </div>
             <img
               src="https://i0.wp.com/starlight-kw.com/wp-content/uploads/2023/04/2-2.jpg?fit=1000%2C1000&ssl=1"
               className="card-img-top"
               alt="..."
             />
             <div className="card-body d-flex justify-content-evenly">
-              <Link to="/Details" className="btn btn-primary">
+              <Link to='/Details'  className="btn btn-primary">
                 Details
               </Link>
               <button className="btn btn-primary">Order</button>
             </div>
           </div>
         </div> */}
-        {/* <div
+        <div
           className="container-fluid d-flex align-items-center justify-content-center "
           style={{ height: "6vh" }}
         >
           {" "}
           <div className="text-white"></div>
-        </div> */}
+        </div>
       </div>
 
       {/* {loginCheck && <Signup/>} */}
