@@ -35,6 +35,7 @@ function App() {
       <Route path='/Products' element = {<Products/>}/>
       <Route path='/ReducerPage' element = {<ReducerPage/>}/>
     </Routes>
+   
   </Router>
  
  {/* <Navbar/>

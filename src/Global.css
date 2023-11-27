@@ -80,3 +80,38 @@ background-position: center;
   border: solid pink;
 }
 
+
+/* for faq */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.faq {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.faq-section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.faq-section-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+.faq-question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.faq-answer {
+  font-size: 16px;
+}

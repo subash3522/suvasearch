@@ -7,7 +7,7 @@ function Homepage4() {
         className="container d-flex flex-column flex-md-row align-items-center justify-content-evenly"
         style={{ minHeight: "80vh" }}
       >
-        <div
+        {/* <div
           className="d-flex w-md-50 w-100 m-3"
           style={{  height: "90%"}}
         >
@@ -37,7 +37,28 @@ function Homepage4() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
+<div className="d-flex w-100 m-3">
+  <div className="d-flex flex-column align-items-center justify-content-center">
+    <h2 className="myfont text-center">Featured</h2>
+    <div className="feature-description">
+      <h3 className='text-center'>Search Platform Features:</h3>
+      <ul>
+        <li>Utilizes an advanced algorithm for accurate and relevant results</li>
+        <li>Helps find travel, hiking, and biking places</li>
+        <li>Find Information about Nepali products</li>
+        <li>Find Rooms</li>
+        <li>Find Hotels</li>
+        <li>Electrical vehicle charging stations</li>
+        <li>And Many more</li>
+      </ul>
+    </div>
+      <button>Try It Yourself</button>
+    
+  </div>
+</div>
+
         <div
           className="w-w-md-50 w-100"
           style={{ height: "90%" }}
