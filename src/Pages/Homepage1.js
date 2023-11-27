@@ -1,5 +1,6 @@
 import React from "react";
 import "../Global.css";
+import { Link } from "react-router-dom";
 
 function Homepage1() {
   return (
@@ -36,8 +37,8 @@ function Homepage1() {
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div> */}
-            <div className="d-flex justify-content-evenly">
-              <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center">
+            <div className="d-flex justify-content-evenly  w-100">
+              <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
                 <div className="icon p-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,8 +56,8 @@ function Homepage1() {
                   </svg>
                 </div>
                 <div className="m-3 myfont">Product Cateogories</div>
-                <button className=" m-0 myfontsub " style={{ width: "100px" }}>
-                  Explore
+                <button className=" m-0 myfontsub btn btn-white text-white border" style={{ width: "100px" }}>
+                <Link to='/Products' className="text-white text-decoration-none">Explore</Link>
                 </button>
               </div>
               <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center">
@@ -77,7 +78,7 @@ function Homepage1() {
                   </svg>
                 </div>
                 <div className="m-3 myfont">Product Cateogories</div>
-                <button className=" m-0 myfontsub " style={{ width: "100px" }}>
+                <button className=" m-0 myfontsub btn btn-white text-white border" style={{ width: "100px" }}>
                   Explore
                 </button>
               </div>
