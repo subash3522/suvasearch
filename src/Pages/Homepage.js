@@ -14,9 +14,10 @@ import Signup from "./Signup";
 import { useSelector } from "react-redux";
 
 function Homepage({ loginCheck }) {
-  const loginTogglerState = useSelector((state) => state.loginToggler);
+  const loginTogglerState = useSelector((state) => state.xyz);
   return (
     <>
+    <div className="imagepreloader" />
       <div className="whole-body " style={{height:'100vh'}}>
         <div className="container-fluid  d-flex align-items-center justify-content-center h-global">
           <div className="text-white">
@@ -82,13 +83,13 @@ function Homepage({ loginCheck }) {
             </div>
           </div>
         </div> */}
-        <div
+        {/* <div
           className="container-fluid d-flex align-items-center justify-content-center "
           style={{ height: "6vh" }}
         >
           {" "}
           <div className="text-white"></div>
-        </div>
+        </div> */}
       </div>
 
       {/* {loginCheck && <Signup/>} */}

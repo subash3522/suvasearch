@@ -12,6 +12,7 @@ import Products from './Shopping Apis/Products';
 import ReducerPage from './ReducerPage';
 import Homepage1 from './Pages/Homepage1';
 import HomeRouter from './Pages/HomeRouter';
+import Blured from './Pages/Blured';
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
     />
    
     <Routes>
-      <Route path="/" element={<HomeRouter  loginCheck = {loginCheck}/> } />
+      <Route path="/" element={<HomeRouter/>?<HomeRouter  loginCheck = {loginCheck}/>:<Blured/> } />
       <Route path="/Details" element={<Details />} />
       <Route path='/Products' element = {<Products/>}/>
       <Route path='/ReducerPage' element = {<ReducerPage/>}/>
