@@ -30,7 +30,12 @@ function Homepage3() {
                   Unlock exclusive deals for hidden hiking spots and discounts
                   with our search platform.
                 </p>
-                <button>Explore</button>
+                <button
+                  className=" p-0 myfontsub btn btn-white  "
+                  style={{ width: "100px", border: "solid black" }}
+                >
+                  Explore
+                </button>
               </div>
               <div className=" d-flex flex-column align-items-center">
                 <p style={{ fontSize: "1.3rem", fontWeight: "bold" }}>
@@ -43,7 +48,12 @@ function Homepage3() {
                   Unlock exclusive deals for hidden riding roads and discounts
                   with our search platform.
                 </p>
-                <button>Explore</button>
+                <button
+                  className=" p-0 myfontsub btn btn-white  "
+                  style={{ width: "100px", border: "solid black" }}
+                >
+                  Explore
+                </button>
               </div>
             </div>
           </div>

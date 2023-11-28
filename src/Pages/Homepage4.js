@@ -54,7 +54,12 @@ function Homepage4() {
         <li>And Many more</li>
       </ul>
     </div>
-      <button>Try It Yourself</button>
+    <button
+                  className=" p-0 myfontsub btn btn-white  "
+                  style={{ width: "170px", border: "solid black" }}
+                >
+                  Try It Yourself
+                </button>
     
   </div>
 </div>
