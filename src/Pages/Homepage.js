@@ -15,6 +15,9 @@ import { useSelector } from "react-redux";
 
 function Homepage({ loginCheck }) {
   const loginTogglerState = useSelector((state) => state.xyz);
+  <script>
+  AOS.init();
+</script>
   return (
     <>
     <div className="imagepreloader" />
