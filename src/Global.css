@@ -19,13 +19,15 @@
 .h-global {
   
   height: 100%;
-  padding-bottom: 200px;
-  
- 
 }
 
 .width-global-80 {
   width: 30%;
+}
+
+.active{
+  text-decoration: none;
+  color: #dbbe00;
 }
 
 .global-bg-cards {

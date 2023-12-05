@@ -22,23 +22,31 @@ function Homepage({ loginCheck }) {
     <>
     <div className="imagepreloader" />
       <div className="whole-body " style={{height:'100vh'}}>
-        <div className="container-fluid  d-flex align-items-center justify-content-center h-global">
-          <div className="text-white">
+        <div className="container-fluid  d-flex align-items-center justify-content-center  h-global"  >
+          <div className="text-white text-center" style={{height:'40%',width:'400px'}}>
             <div className="d-flex flex-column">
               <div className="d-flex flex-column mb-3">
-                <h1 className="text-center" style={{ fontFamily: "open-sans" }}>
+                <h1 className="text-center" style={{ fontFamily: "poppins", fontSize:'3em',fontWeight:'bold' }}>
                   Where Answers Await Your Query.
                 </h1>
                 <p
-                  className="text-center"
-                  style={{ fontFamily: "open-sans", fontSize: "1.1rem" }}
+                  className="text-left mt-3"
+                  style={{ fontFamily: "open-sans", fontSize: "1rem", color:"CaptionText" }}
                 >
                   {" "}
                   With lightning-fast precision and an intuitive interface,{" "}
                   we've revolutionized the way you navigate the web.
                 </p>
               </div>
-              <form className="d-flex mt-3" role="search">
+        <div className="d-flex justify-content-evenly ">
+              <button  className=" p-2  bg-black  text-white  "
+                  style={{ width: "100px", border: "solid black 1px" }}>Search</button>
+              <button
+                  className="  p-2  bg-transparent text-black  "
+                  style={{ width: "100px", border: "solid white 1px" }}
+                  >Explore</button>
+              </div>
+              {/* <form className="d-flex mt-3" role="search">
                 <input
                   className="form-control me-2"
                   type="search"
@@ -48,7 +56,7 @@ function Homepage({ loginCheck }) {
                 <button className=" text-black  bg-global" type="submit">
                   Search
                 </button>
-              </form>
+              </form> */}
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import "../Global.css"; // Import your CSS file
 function App() {
   return (
     <div
-      className="faq p-3 container-sm"
+      className="faq p-3  container-sm"
       style={{ border: "solid 2px black", borderRadius: "20px" }}
     >
       <header className="faq-header">

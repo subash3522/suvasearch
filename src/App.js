@@ -33,7 +33,8 @@ function App() {
     <Routes>
       <Route path="/" element={<HomeRouter/>?<HomeRouter  loginCheck = {loginCheck}/>:<Blured/> } />
       <Route path="/Details" element={<Details />} />
-      <Route path='/Products' element = {<Products/>}/>
+      {/* <Route path='/Products' element = {<Products/>}/> */}
+      
       <Route path='/ReducerPage' element = {<ReducerPage/>}/>
     </Routes>
    
