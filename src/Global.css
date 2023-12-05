@@ -27,7 +27,11 @@
 
 .active{
   text-decoration: none;
+  color:white;
+}
+.aactive{
   color: #dbbe00;
+  text-decoration: none;
 }
 
 .global-bg-cards {

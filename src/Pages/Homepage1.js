@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 function Homepage1() {
   return (
     <>
-     
-
       {/* new */}
-      <div id="carouselExample" className="carousel slide">
-        <div className="carousel-inner">
-          <div className="carousel-item active">
+      <div id="carouselExample" className="carousel slide" style={{position:'relative'}}>
+      {/* <div className="d-none d-sm-block d-md-none" style={{position:'absolute', top:"50px", zIndex:'1', width:"100%", color:'white'}}>Slide Left or Right</div> */}
+      
+        <div className="carousel-inner" style={{ height: "70vh" }}>
+          <div className="carousel-item active" style={{ height: "100%" }}>
+            
             <div
               className=" d-flex justify-content-center align-items-center background1"
-              style={{ height: "50vh" }}
+              style={{ height: "70vh" }}
             >
               <div className="d-flex justify-content-evenly  w-100">
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
@@ -33,7 +34,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">Producs</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -64,7 +65,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">Services</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -75,11 +76,11 @@ function Homepage1() {
               </div>
             </div>
           </div>
-          <div className="carousel-item ">
+          <div className="carousel-item " style={{ height: "100%" }}>
             <div
               className=" d-flex justify-content-center align-items-center background2"
-              style={{ height: "50vh" }}
-             >
+              style={{ height: "70vh" }}
+            >
               <div className="d-flex justify-content-evenly  w-100">
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
                   <div className="icon p-3">
@@ -98,7 +99,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">Tour Destination</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -129,7 +130,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">Rooms/HOtels</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -140,11 +141,11 @@ function Homepage1() {
               </div>
             </div>
           </div>
-          <div className="carousel-item ">
+          <div className="carousel-item " style={{ height: "100%" }}>
             <div
               className=" d-flex justify-content-center align-items-center background3"
-              style={{ height: "50vh" }}
-              >
+              style={{ height: "70vh" }}
+            >
               <div className="d-flex justify-content-evenly  w-100">
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
                   <div className="icon p-3">
@@ -163,7 +164,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">Charging Points: EV</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -194,7 +195,7 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Product Cateogories</div>
+                  <div className="m-3 myfont">FInd Peace</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
@@ -205,18 +206,21 @@ function Homepage1() {
               </div>
             </div>
           </div>
+         
         </div>
+        
         <button
-          className="carousel-control-prev"
+          className="carousel-control-prev "
           type="button"
           data-bs-target="#carouselExample"
           data-bs-slide="prev"
+          
         >
           <span className="carousel-control-prev-icon" aria-hidden="true" />
           <span className="visually-hidden">Previous</span>
         </button>
         <button
-          className="carousel-control-next"
+          className="carousel-control-next "
           type="button"
           data-bs-target="#carouselExample"
           data-bs-slide="next"
@@ -224,6 +228,7 @@ function Homepage1() {
           <span className="carousel-control-next-icon" aria-hidden="true" />
           <span className="visually-hidden">Next</span>
         </button>
+        
       </div>
     </>
   );

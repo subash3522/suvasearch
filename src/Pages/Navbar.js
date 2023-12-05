@@ -37,24 +37,33 @@ function Navbar({ loginClicker }) {
         <div className="d-flex">
           <div
             // onClick={()=>loginClicker()}
-            onClick={() => dispatch(tfTogler())}
+            // onClick={() => dispatch(tfTogler())}
             className="m-1 text-align-center"
             style={{
               border: "solid black 1px",
               backgroundColor: "#2D2C2C",
               color: "#FFDD00",
-              padding: "8px 15px",
+              padding: "8px 10px",
             }}
           >
-            Login
+             <Link
+              activeClass="aactive"
+              to="Homepage"
+              spy={true}
+              smooth={true}
+              offset={-50} // Adjust offset based on your layout
+              duration={50}
+            >
+            Home
+            </Link>
           </div>
           <div
             className="m-1 text-align-center text-decoration-none"
             style={{
               border: "solid black 1px",
               backgroundColor: "#2D2C2C",
-              color: "#FFDD00",
-              padding: "8px 15px",
+              color: "white",
+              padding: "8px 10px",
             }}
           >
             {/* <Link to="/Products" className="text-white text-decoration-none">
@@ -66,7 +75,7 @@ function Navbar({ loginClicker }) {
               spy={true}
               smooth={true}
               offset={-50} // Adjust offset based on your layout
-              duration={390}
+              duration={50}
             >
               Categories
             </Link>

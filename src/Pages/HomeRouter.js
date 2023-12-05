@@ -9,8 +9,9 @@ import { Element } from "react-scroll";
 function HomeRouter() {
   return (
     <>
-      
+      <Element name="Homepage">
         <Homepage />
+        </Element>
         <Element name="Homepage1">
         <Homepage1 />
         </Element>

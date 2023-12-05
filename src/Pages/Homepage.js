@@ -12,8 +12,13 @@ import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { loginToggler } from "../Reducer/Index";
+import { tfTogler } from "../Actioncreator/Index";
 
 function Homepage({ loginCheck }) {
+
+  const dispatch = useDispatch();
   const loginTogglerState = useSelector((state) => state.xyz);
   <script>
   AOS.init();
@@ -38,10 +43,15 @@ function Homepage({ loginCheck }) {
                   we've revolutionized the way you navigate the web.
                 </p>
               </div>
-        <div className="d-flex justify-content-evenly ">
-              <button  className=" p-2  bg-black  text-white  "
-                  style={{ width: "100px", border: "solid black 1px" }}>Search</button>
+        <div 
+         
+        className="d-flex justify-content-evenly ">
+              <button 
+               onClick={() => dispatch(tfTogler())}
+              className=" p-2  bg-black  text-white  "
+                  style={{ width: "100px", border: "solid black 1px" }}>Login</button>
               <button
+             
                   className="  p-2  bg-transparent text-black  "
                   style={{ width: "100px", border: "solid white 1px" }}
                   >Explore</button>

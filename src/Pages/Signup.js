@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginToggler } from "../Reducer/Index";
+import { tfTogler } from "../Actioncreator/Index";
 
 function Signup() {
+  const dispatch = useDispatch();
   return (
     <>
-      <div className="for-login d-flex justify-content-center align-items-center">
+      <div className="for-login d-flex justify-content-center align-items-center" >
         <svg xmlns="http://www.w3.org/2000/svg" className="d-none">
           <symbol id="check2" viewBox="0 0 16 16">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -32,6 +36,7 @@ function Signup() {
             <div className="modal-content rounded-4 shadow">
               <div className="modal-header p-5 pb-4 border-bottom-0">
                 <h1 className="fw-bold mb-0 fs-2">Sign up for free</h1>
+                <button onClick={() => dispatch(tfTogler())} className="btn btn-danger"><h1 className=" mb-0 fs-2">X</h1></button>
               </div>
               <div className="modal-body p-5 pt-0">
                 <form className="">
