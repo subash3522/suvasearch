@@ -1,10 +1,10 @@
 import React from "react";
 import "../Global.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginToggler } from "../Reducer/Index";
 import { tfTogler } from "../Actioncreator/Index";
-import { Link } from "react-scroll";
+import { Link as Scroollink } from "react-scroll";
 
 // import { Link } from "react-scroll";
 
@@ -46,7 +46,7 @@ function Navbar({ loginClicker }) {
               padding: "8px 10px",
             }}
           >
-             <Link
+             <Scroollink
               activeClass="aactive"
               to="Homepage"
               spy={true}
@@ -55,7 +55,7 @@ function Navbar({ loginClicker }) {
               duration={50}
             >
             Home
-            </Link>
+            </Scroollink>
           </div>
           <div
             className="m-1 text-align-center text-decoration-none"
@@ -69,7 +69,7 @@ function Navbar({ loginClicker }) {
             {/* <Link to="/Products" className="text-white text-decoration-none">
               Explore
             </Link> */}
-            <Link
+            <Scroollink
               activeClass="active"
               to="Homepage1"
               spy={true}
@@ -78,7 +78,7 @@ function Navbar({ loginClicker }) {
               duration={50}
             >
               Categories
-            </Link>
+            </Scroollink>
           </div>
         </div>
       </nav>
