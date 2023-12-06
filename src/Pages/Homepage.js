@@ -49,12 +49,12 @@ function Homepage({ loginCheck }) {
               <button 
                onClick={() => dispatch(tfTogler())}
               className=" p-2  bg-black  text-white  "
-                  style={{ width: "100px", border: "solid black 1px" }}>Login</button>
+                  style={{ width: "120px", border: "solid black 1px" }}>Login</button>
               <button
              
                   className="  p-2  bg-transparent text-black  "
-                  style={{ width: "100px", border: "solid white 1px" }}
-                  >Explore</button>
+                  style={{ width: "110px", border: "solid white 1px" }}
+                  >Today's Pick</button>
               </div>
               {/* <form className="d-flex mt-3" role="search">
                 <input
