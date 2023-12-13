@@ -54,7 +54,7 @@ function Homepage({ loginCheck }) {
              
                   className="  p-2  bg-transparent text-black  "
                   style={{ width: "110px", border: "solid white 1px" }}
-                  >Today's Pick</button>
+                  ><Link to='/Signup' style={{color:"black", textDecoration:'none'}}>Register</Link></button>
               </div>
               {/* <form className="d-flex mt-3" role="search">
                 <input
@@ -114,10 +114,8 @@ function Homepage({ loginCheck }) {
       </div>
 
       {/* {loginCheck && <Signup/>} */}
-      {loginTogglerState && <Signup />}
-      <Routes>
-        <Route path="/login" element={<Login />}></Route>
-      </Routes>
+      {loginTogglerState && <Login />}
+      
 
       {/* {loginCheck && <Blured/>} */}
       {loginTogglerState && <Blured />}

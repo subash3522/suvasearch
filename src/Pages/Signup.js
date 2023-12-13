@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginToggler } from "../Reducer/Index";
 import { tfTogler } from "../Actioncreator/Index";
+import axios from "axios";
 
 function Signup() {
   const dispatch = useDispatch();
+
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  });
+
+  console.log(login);
+
+  const handleChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5001/suvasearchsignup", login)
+      .then((res) => {
+        console.log(res + "dandanadan");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
-      <div className="for-login d-flex justify-content-center align-items-center" >
+      <div className="for-login d-flex justify-content-center align-items-center bg-success">
         <svg xmlns="http://www.w3.org/2000/svg" className="d-none">
           <symbol id="check2" viewBox="0 0 16 16">
             <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
@@ -36,7 +58,16 @@ function Signup() {
             <div className="modal-content rounded-4 shadow">
               <div className="modal-header p-5 pb-4 border-bottom-0">
                 <h1 className="fw-bold mb-0 fs-2">Sign up for free</h1>
-                <button onClick={() => dispatch(tfTogler())} className="btn btn-danger"><h1 className=" mb-0 fs-2">X</h1></button>
+                <button className="btn btn-success">
+                  <h1 className=" mb-0 fs-2">
+                    <Link
+                      to="/"
+                      style={{ color: "white", textDecoration: "none" }}
+                    >
+                      Back
+                    </Link>{" "}
+                  </h1>
+                </button>
               </div>
               <div className="modal-body p-5 pt-0">
                 <form className="">
@@ -46,6 +77,8 @@ function Signup() {
                       className="form-control rounded-3"
                       id="floatingInput"
                       placeholder="name@example.com"
+                      name="email"
+                      onChange={handleChange}
                     />
                     <label htmlFor="floatingInput">Email address</label>
                   </div>
@@ -55,12 +88,15 @@ function Signup() {
                       className="form-control rounded-3"
                       id="floatingPassword"
                       placeholder="Password"
+                      name="password"
+                      onChange={handleChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
                   <button
                     className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                     type="submit"
+                    onClick={handleSubmit}
                   >
                     Sign up
                   </button>
@@ -91,11 +127,12 @@ function Signup() {
                   <button
                     className="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3"
                     type="submit"
-                  ><Link to='/login'>
-                    <svg className="bi me-1" width={16} height={16}>
-                      <use xlinkHref="#twitter" />
-                    </svg>
-                    Already Have an Account?
+                  >
+                    <Link to="/login">
+                      <svg className="bi me-1" width={16} height={16}>
+                        <use xlinkHref="#twitter" />
+                      </svg>
+                      Already Have an Account?
                     </Link>
                   </button>
                 </form>

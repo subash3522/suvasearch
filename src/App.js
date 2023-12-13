@@ -46,6 +46,8 @@ function App() {
           <Route path="/Products" element={<Products />} />
 
           <Route path="/ReducerPage" element={<ReducerPage />} />
+          <Route path="/Signup" element={<Signup />}></Route>
+          <Route path="/Login" element={<Login />}></Route>
         </Routes>
       </Router>
 

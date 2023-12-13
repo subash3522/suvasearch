@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { tfTogler } from "../Actioncreator/Index";
 
 function Login() {
+  const dispatch = useDispatch();
   return (
     <>
       <div className="for-login d-flex justify-content-center align-items-center">
@@ -30,7 +33,8 @@ function Login() {
           <div className="modal-dialog" role="document">
             <div className="modal-content rounded-4 shadow">
               <div className="modal-header p-5 pb-4 border-bottom-0">
-                <h1 className="fw-bold mb-0 fs-2">Sign up for free</h1>
+                <h1 className="fw-bold mb-0 fs-2">Account Login</h1>
+                <button onClick={() => dispatch(tfTogler())} className="btn btn-danger"><h1 className=" mb-0 fs-2">X</h1></button>
               </div>
               <div className="modal-body p-5 pt-0">
                 <form className="">
@@ -56,7 +60,7 @@ function Login() {
                     className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                     type="submit"
                   >
-                    Sign up
+                    Login
                   </button>
                   <small className="text-body-secondary">
                     By clicking Sign up, you agree to the terms of use.
@@ -82,15 +86,7 @@ function Login() {
                     </svg>
                     Sign up with Google
                   </button>
-                  <button
-                    className="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3"
-                    type="submit"
-                  >
-                    <svg className="bi me-1" width={16} height={16}>
-                      <use xlinkHref="#twitter" />
-                    </svg>
-                    Already Have an Account?
-                  </button>
+                  
                 </form>
               </div>
             </div>
