@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { tfTogler } from "../Actioncreator/Index";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
+
+  const [loginValue, setLoginValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const navigate = useNavigate();
+  const onFormChange = (e) => {
+    setLoginValue({ ...loginValue, [e.target.name]: e.target.value });
+  };
+
+  const onLoginHandle = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://apitesting-com.onrender.com/suvasearchlogin", loginValue)
+      .then((res) => {
+        if (res.data.status === "success") {
+          navigate("/");
+          window.location.reload(true)
+        } else console.log(res.data.message);
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
+
   return (
     <>
       <div className="for-login d-flex justify-content-center align-items-center">
@@ -34,7 +62,12 @@ function Login() {
             <div className="modal-content rounded-4 shadow">
               <div className="modal-header p-5 pb-4 border-bottom-0">
                 <h1 className="fw-bold mb-0 fs-2">Account Login</h1>
-                <button onClick={() => dispatch(tfTogler())} className="btn btn-danger"><h1 className=" mb-0 fs-2">X</h1></button>
+                <button
+                  onClick={() => dispatch(tfTogler())}
+                  className="btn btn-danger"
+                >
+                  <h1 className=" mb-0 fs-2">X</h1>
+                </button>
               </div>
               <div className="modal-body p-5 pt-0">
                 <form className="">
@@ -44,6 +77,8 @@ function Login() {
                       className="form-control rounded-3"
                       id="floatingInput"
                       placeholder="name@example.com"
+                      name="email"
+                      onChange={onFormChange}
                     />
                     <label htmlFor="floatingInput">Email address</label>
                   </div>
@@ -53,12 +88,15 @@ function Login() {
                       className="form-control rounded-3"
                       id="floatingPassword"
                       placeholder="Password"
+                      name="password"
+                      onChange={onFormChange}
                     />
                     <label htmlFor="floatingPassword">Password</label>
                   </div>
                   <button
                     className="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
                     type="submit"
+                    onClick={onLoginHandle}
                   >
                     Login
                   </button>
@@ -86,7 +124,6 @@ function Login() {
                     </svg>
                     Sign up with Google
                   </button>
-                  
                 </form>
               </div>
             </div>

@@ -42,6 +42,7 @@ function App() {
               )
             }
           />
+          
           <Route path="/Details" element={<Details />} />
           <Route path="/Products" element={<Products />} />
 

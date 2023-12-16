@@ -22,12 +22,15 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5001/suvasearchsignup", login)
+      // .post("http://localhost:5001/suvasearchsignup", login)
+      .post("https://apitesting-com.onrender.com/suvasearchsignup", login)
       .then((res) => {
-        console.log(res + "dandanadan");
+        console.log(res.data + "dandanadan");
       })
       .catch((err) => console.log(err));
   };
+
+  
   return (
     <>
       <div className="for-login d-flex justify-content-center align-items-center bg-success">
