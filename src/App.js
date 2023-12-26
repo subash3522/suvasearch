@@ -19,6 +19,8 @@ import ReducerPage from "./ReducerPage";
 import Homepage1 from "./Pages/Homepage1";
 import HomeRouter from "./Pages/HomeRouter";
 import Blured from "./Pages/Blured";
+import Imgupload from "./Imgupload";
+
 
 function App() {
   const [loginCheck, setLoginCheck] = useState(false);
@@ -49,6 +51,10 @@ function App() {
           <Route path="/ReducerPage" element={<ReducerPage />} />
           <Route path="/Signup" element={<Signup />}></Route>
           <Route path="/Login" element={<Login />}></Route>
+          <Route path="/Imgupload" element={<Imgupload />}></Route>
+
+          
+          
         </Routes>
       </Router>
 

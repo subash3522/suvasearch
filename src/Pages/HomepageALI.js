@@ -21,9 +21,11 @@ function HomepageALI({ loginCheck }) {
   const dispatch = useDispatch();
   const loginTogglerState = useSelector((state) => state.xyz);
   <script>AOS.init();</script>;
+  axios.defaults.withCredentials= true;
+
 
   const handleLogout = ()=>{
-    axios.get("https://apitesting-com.onrender.com/suvalogout")
+    axios.get("http://localhost:5001/suvalogout")
     .then(res=>{
        window.location.reload(true)
        console.log(res.status);
@@ -140,3 +142,4 @@ function HomepageALI({ loginCheck }) {
 }
 
 export default HomepageALI;
+

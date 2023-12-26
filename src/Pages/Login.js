@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
+  axios.defaults.withCredentials = true;
 
   const [loginValue, setLoginValue] = useState({
     email: "",
@@ -20,11 +21,11 @@ function Login() {
   const onLoginHandle = (e) => {
     e.preventDefault();
     axios
-      .post("https://apitesting-com.onrender.com/suvasearchlogin", loginValue)
+      .post("http://localhost:5001/suvasearchlogin", loginValue)
       .then((res) => {
         if (res.data.status === "success") {
           navigate("/");
-          window.location.reload(true)
+          window.location.reload(true);
         } else console.log(res.data.message);
       })
       .catch((error) => {

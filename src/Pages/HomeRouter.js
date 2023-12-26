@@ -9,26 +9,19 @@ import HomepageALI from "./HomepageALI";
 import axios from "axios";
 import { useEffect } from "react";
 
-
 function HomeRouter() {
+  const [auth, setAuth] = useState(false);
+  axios.defaults.withCredentials = true;
 
-  const [auth,setAuth] = useState(false)
-  axios.defaults.withCredentials= true;
-
-  useEffect(()=>{
-        
-    axios.get("http://localhost:5001/suvaauth")
-    .then(res=>{
-        if(res.data.status ==="success"){
-            setAuth(true)
-           
-        }
-        else{
-           console.log(res.data); 
-        }
-    })
-})
-
+  useEffect(() => {
+    axios.get("http://localhost:5001/suvaauth").then((res) => {
+      if (res.data.status === "success") {
+        setAuth(true);
+      } else {
+        console.log(res.data);
+      }
+    });
+  });
 
   return (
     <>
@@ -36,16 +29,15 @@ function HomeRouter() {
         <Homepage />
         </Element> */}
       <Element name="Homepage">
-       {auth?<HomepageALI/>:<Homepage></Homepage>} 
-        </Element>
+        {auth ? <HomepageALI /> : <Homepage></Homepage>}
+      </Element>
 
-        <Element name="Homepage1">
+      <Element name="Homepage1">
         <Homepage1 />
-        </Element>
-        <Homepage3 />
-        <Homepage4 />
-        <FAQ />
-      
+      </Element>
+      <Homepage3 />
+      <Homepage4 />
+      <FAQ />
     </>
   );
 }
