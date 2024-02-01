@@ -77,7 +77,7 @@ function Imgupload() {
   useEffect(() => {
     const fetchMountains = async () => {
       try {
-        const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
+        const response = await axios.get("http://localhost:5001/api/mountains");
         setMountains(response.data.mountains);
       } catch (error) {
         console.error("Error fetching mountains:", error);
@@ -126,13 +126,12 @@ function Imgupload() {
   }, []);
   //mountain get with budget param ends here
 
-
   //login auth stats here
   const [auth, setAuth] = useState(false);
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
+    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
         setAuth(true);
@@ -144,18 +143,21 @@ function Imgupload() {
   //login auth ends here
 
   //like post starts here
-  const [userIdForLike, setUserIdForLike] = useState(1)
+  const [userIdForLike, setUserIdForLike] = useState(1);
 
-  const handleOnLike = (postId) =>{
+  const handleOnLike = (postId) => {
     axios
-    .post("http://localhost:5001/like", {userIdForLIke:1,postIdForLike:postId})
-    .then((res) => {
-     console.log(res.data);
-    })
-    .catch((error) => {
-      console.error("Error occurred:", error);
-    });
-  }
+      .post("http://localhost:5001/like", {
+        userIdForLIke: 1,
+        postIdForLike: postId,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
 
   //like post ends here
 
@@ -242,19 +244,28 @@ function Imgupload() {
         <button type="submit">Uploads</button>
       </form>
 
-      <div className="product-container" >
+      <div className="product-container">
         {mountains.map((value) => (
-          <Link className="product-container"  to={auth?`Description/${value.ID}`:''}  >
+          <Link
+            className="product-container"
+            to={auth ? `Description/${value.ID}` : ""}
+          >
             <div className="fruit fade-in" key={value.ID}>
               <h3 className="letter-animation">{value.mountainName}</h3>
-              <img style={{height:'200px'}}
+              <img
+                style={{ height: "200px" }}
                 src={`http://localhost:5001/${value.photoPath}`}
                 alt={value.mountainName}
                 className="letter-animati on"
               />
               <p className="letter-animation">{value.category}</p>
               <p className="letter-animation">Save</p>
-              <p className="letter-animation" onClick={()=>handleOnLike(value.ID)}>Like</p>
+              <p
+                className="letter-animation"
+                onClick={() => handleOnLike(value.ID)}
+              >
+                Like
+              </p>
               <p className="letter-animation">Recommend</p>
 
               <button className="shop-now-button">Shop Now</button>
