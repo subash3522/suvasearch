@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Global.css";
+import { Link } from "react-router-dom";
 
 function Imgupload() {
   const [imgfile, setImgfile] = useState();
@@ -58,7 +60,7 @@ function Imgupload() {
     formData.append("description", description);
 
     try {
-      await axios.post("https://apitesting-com.onrender.com/api/addMountain", formData, {
+      await axios.post("http://localhost:5001/api/addMountain", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
@@ -87,6 +89,76 @@ function Imgupload() {
 
   //mountains get ends here
 
+  //mountain get with id param:
+
+  const [mountainsId, setMountainsId] = useState([]);
+
+  useEffect(() => {
+    const fetchMountainsId = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/mountain/1");
+        // console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching mountains:", error);
+      }
+    };
+
+    fetchMountainsId();
+  }, []);
+
+  //mountain get with id param ends here
+
+  //mountain get with budget param starts here
+
+  const [mountainsBudget, setMountainsBudget] = useState([]);
+
+  useEffect(() => {
+    const fetchMountainsBudget = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/mountains/low");
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching mountains:", error);
+      }
+    };
+
+    fetchMountainsBudget();
+  }, []);
+  //mountain get with budget param ends here
+
+
+  //login auth stats here
+  const [auth, setAuth] = useState(false);
+  axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    axios.get("http://localhost:5001/suvaauth").then((res) => {
+      if (res.data.status === "success") {
+        console.log(res.data);
+        setAuth(true);
+      } else {
+        console.log(res.data);
+      }
+    });
+  });
+  //login auth ends here
+
+  //like post starts here
+  const [userIdForLike, setUserIdForLike] = useState(1)
+
+  const handleOnLike = (postId) =>{
+    axios
+    .post("http://localhost:5001/like", {userIdForLIke:1,postIdForLike:postId})
+    .then((res) => {
+     console.log(res.data);
+    })
+    .catch((error) => {
+      console.error("Error occurred:", error);
+    });
+  }
+
+  //like post ends here
+
   return (
     <>
       <div>
@@ -95,7 +167,7 @@ function Imgupload() {
         {img.map((value, index) => (
           <img
             key={index}
-            src={`https://apitesting-com.onrender.com/${value.Image}`}
+            src={`http://localhost:5001/${value.Image}`}
             alt=""
             style={{ height: "200px", width: "300px" }}
           />
@@ -170,25 +242,26 @@ function Imgupload() {
         <button type="submit">Uploads</button>
       </form>
 
-    
-  
-        {
-          mountains.map((value)=>(
-          <div className="card" style={{ width: "18rem" }}>
-          <img src={`https://apitesting-com.onrender.com/${value.photoPath}`} className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">{value.mountainName}</h5>
-            <p className="card-text">
-              {value.descriptionContent}
-            </p>
-            <a href="#" className="btn btn-primary">
-              Go somewhere
-            </a>
-          </div>
-        </div>))}
+      <div className="product-container" >
+        {mountains.map((value) => (
+          <Link className="product-container"  to={auth?`Description/${value.ID}`:''}  >
+            <div className="fruit fade-in" key={value.ID}>
+              <h3 className="letter-animation">{value.mountainName}</h3>
+              <img style={{height:'200px'}}
+                src={`http://localhost:5001/${value.photoPath}`}
+                alt={value.mountainName}
+                className="letter-animati on"
+              />
+              <p className="letter-animation">{value.category}</p>
+              <p className="letter-animation">Save</p>
+              <p className="letter-animation" onClick={()=>handleOnLike(value.ID)}>Like</p>
+              <p className="letter-animation">Recommend</p>
 
-
-      
+              <button className="shop-now-button">Shop Now</button>
+            </div>
+          </Link>
+        ))}
+      </div>
     </>
   );
 }

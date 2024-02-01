@@ -17,11 +17,13 @@ function HomeRouter() {
     axios.get("http://localhost:5001/suvaauth").then((res) => {
       if (res.data.status === "success") {
         setAuth(true);
+        console.log(res.data);
       } else {
         console.log(res.data);
       }
     });
   });
+  
 
   return (
     <>
