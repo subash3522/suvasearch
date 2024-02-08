@@ -16,9 +16,9 @@ function Homepage1() {
               className=" d-flex justify-content-center align-items-center background1"
               style={{ height: "70vh" }}
             >
-              <div className="d-flex justify-content-evenly  w-100">
-                <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
-                  <div className="icon p-3">
+              <div className="d-flex justify-content-evenly  w-100" >
+                {/* <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center " style={{ border:'solid red'}}>
+                  <div className="icon p-3" >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={16}
@@ -46,7 +46,7 @@ function Homepage1() {
                       Explore
                     </Link>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center">
                   <div className="icon p-3">
@@ -65,12 +65,17 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Services</div>
+                  <div className="m-3 myfont">Your Travell is One Click Away</div>
                   <button
                     className=" m-0 myfontsub btn btn-white text-white border"
                     style={{ width: "100px" }}
                   >
-                    Explore
+                    <Link
+                      to="/Explore"
+                      className="text-white text-decoration-none"
+                    >
+                      Explore
+                    </Link>
                   </button>
                 </div>
               </div>
@@ -82,7 +87,7 @@ function Homepage1() {
               style={{ height: "70vh" }}
             >
               <div className="d-flex justify-content-evenly  w-100">
-                <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
+                {/* <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
                   <div className="icon p-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +116,7 @@ function Homepage1() {
                       Explore
                     </Link>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center">
                   <div className="icon p-3">
@@ -130,13 +135,13 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">Rooms/HOtels</div>
-                  <button
-                    className=" m-0 myfontsub btn btn-white text-white border"
-                    style={{ width: "100px" }}
-                  >
-                    Explore
-                  </button>
+                  <div className="m-3 myfont">Adventure Starts Here</div>
+                  <Link
+                      to="/Explore"
+                      className="text-white text-decoration-none"
+                    >
+                      Explore
+                    </Link>
                 </div>
               </div>
             </div>
@@ -147,7 +152,7 @@ function Homepage1() {
               style={{ height: "70vh" }}
             >
               <div className="d-flex justify-content-evenly  w-100">
-                <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
+                {/* <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center ">
                   <div className="icon p-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -176,7 +181,7 @@ function Homepage1() {
                       Explore
                     </Link>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="d-flex flex-column  justify-content-center align-items-center text-white text-center">
                   <div className="icon p-3">
@@ -195,13 +200,13 @@ function Homepage1() {
                       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
                     </svg>
                   </div>
-                  <div className="m-3 myfont">FInd Peace</div>
-                  <button
-                    className=" m-0 myfontsub btn btn-white text-white border"
-                    style={{ width: "100px" }}
-                  >
-                    Explore
-                  </button>
+                  <div className="m-3 myfont">Best Travel Destinations</div>
+                  <Link
+                      to="/Explore"
+                      className="text-white text-decoration-none"
+                    >
+                      Explore
+                    </Link>
                 </div>
               </div>
             </div>

@@ -51,7 +51,7 @@ function HomepageALI({ loginCheck }) {
                     fontWeight: "bold",
                   }}
                 >
-                  Where Answers Await Your Query.
+                  Explore Behond Limits.
                 </h1>
                 <p
                   className="text-left mt-3"
@@ -62,8 +62,7 @@ function HomepageALI({ loginCheck }) {
                   }}
                 >
                   {" "}
-                  With lightning-fast precision and an intuitive interface,{" "}
-                  we've revolutionized the way you navigate the web.
+                  Discover new horizons and create unforgettable memories. Your adventure starts here.
                 </p>
               </div>
               <div className="d-flex justify-content-evenly ">

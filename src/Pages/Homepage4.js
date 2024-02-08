@@ -41,16 +41,16 @@ function Homepage4() {
 
 <div className="d-flex w-100 m-3">
   <div className="d-flex flex-column align-items-center justify-content-center">
-    <h2 className="myfont text-center">Featured</h2>
+    <h2 className="myfont text-center">Our website features:</h2>
     <div className="feature-description">
-      <h3 className='text-center'>Search Platform Features:</h3>
+      
       <ul>
         <li>Utilizes an advanced algorithm for accurate and relevant results</li>
         <li>Helps find travel, hiking, and biking places</li>
-        <li>Find Information about Nepali products</li>
-        <li>Find Rooms</li>
-        <li>Find Hotels</li>
-        <li>Electrical vehicle charging stations</li>
+        <li>Login to interract with the post</li>
+        <li>Recommend best destinations to other</li>
+        <li>Subscribe to get new popular place Alerts</li>
+        <li>Post your travell photos</li>
         <li>And Many more</li>
       </ul>
     </div>

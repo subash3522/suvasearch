@@ -1,53 +1,54 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "./Global.css";
+import { Link } from "react-router-dom";
+
 
 function UserProfile() {
+  const { likeId } = useParams();
+  const [likedPost, setLikedPost] = useState([]);
 
-  const [userId, setUserId] = useState('');
-
-    useEffect(() => {
-      // Retrieve the data from local storage
-      const storedData = localStorage.getItem('userData');
-      if (storedData) {
-        // Parse the JSON string to an object
-        const parsedData = JSON.parse(storedData);
-        // Set the user ID if it exists in the parsed object
-        if (parsedData && parsedData.userId) {
-          setUserId(parsedData.userId);
-        }
+  useEffect(() => {
+    const fetchLikedPost = async (a) => {
+      try {
+        const response = await axios.get(`http://localhost:5001/like/${a}`);
+        setLikedPost(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching mountains:", error);
       }
-    }, []);
+    };
 
-    const { likeId } = useParams();
-    const [likeedPost, setLiketPost] = useState([])
+    fetchLikedPost(likeId);
+  }, []);
 
-    
-  
-  
-
-    useEffect(() => {
-        const fetchLikedPost = async(a) => {
-          try {
-            const response = await axios.get(
-              `http://localhost:5001/like/${a}`
-            );
-            setLiketPost(response.data);
-            console.log(response.data);
-           
-          } catch (error) {
-            console.error("Error fetching mountains:", error);
-          }
-        };
-    
-        fetchLikedPost(likeId);
-      }, []);
-
-     
   return (
-    <div>{}1</div>
-  )
+    <>
+      <div className="product-container">
+        {likedPost.map((value) => (
+          <Link
+          className="product-container"
+          to={ `/Description/${value.ID}` }
+        >
+          <div className="fruit fade-in" key={value.ID}>
+            <h3 className="letter-animation">{value.mountainName}</h3>
+            <img
+              style={{ height: "200px" }}
+              src={`http://localhost:5001/${value.photoPath}`}
+              alt={value.mountainName}
+              className="letter-animati on"
+            />
+            <p className="letter-animation">{value.category}</p>
+           
+            <button className="shop-now-button">Shop Now</button>
+          </div>
+          </Link>
+        ))}
+      </div>
+    </>
+  );
 }
 
-export default UserProfile
+export default UserProfile;

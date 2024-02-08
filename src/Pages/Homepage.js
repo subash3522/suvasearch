@@ -32,15 +32,14 @@ function Homepage({ loginCheck }) {
             <div className="d-flex flex-column">
               <div className="d-flex flex-column mb-3">
                 <h1 className="text-center" style={{ fontFamily: "poppins", fontSize:'3em',fontWeight:'bold' }}>
-                  Where Answers Await Your Query.
+                  Explore Behond Limits.
                 </h1>
                 <p
                   className="text-left mt-3"
                   style={{ fontFamily: "open-sans", fontSize: "1rem", color:"CaptionText" }}
                 >
                   {" "}
-                  With lightning-fast precision and an intuitive interface,{" "}
-                  we've revolutionized the way you navigate the web.
+                  Discover new horizons and create unforgettable memories. Your adventure starts here.
                 </p>
               </div>
         <div 

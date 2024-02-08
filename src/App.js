@@ -22,6 +22,7 @@ import Blured from "./Pages/Blured";
 import Imgupload from "./Imgupload";
 import Description from "./Pages/Description";
 import UserProfile from "./UserProfile";
+import Explore from "./Pages/Explore";
 
 
 function App() {
@@ -58,8 +59,9 @@ function App() {
           <Route path="/Signup" element={<Signup />}></Route>
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Imgupload" element={<Imgupload />}></Route>
-          <Route path="/Imgupload/Description/:id" element={<Description />}></Route>
+          <Route path="/Description/:id" element={<Description />}></Route>
           <Route path="/like/:likeId" element={<UserProfile />}></Route>
+          <Route path="/Explore" element={<Explore />}></Route>
 
 
           

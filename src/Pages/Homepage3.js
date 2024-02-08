@@ -28,7 +28,7 @@ function Homepage3() {
             <div className="d-flex ">
               <div className=" d-flex flex-column align-items-center">
                 <p style={{ fontSize: "1.3rem", fontWeight: "bold" }}>
-                  50% OFF
+                  Best Deal
                 </p>
                 <p
                   className="text-center"
@@ -41,12 +41,12 @@ function Homepage3() {
                   className=" p-0 myfontsub btn btn-white  "
                   style={{ width: "100px", border: "solid black" }}
                 >
-                  Explore
+                  Soon.
                 </button>
               </div>
               <div className=" d-flex flex-column align-items-center">
                 <p style={{ fontSize: "1.3rem", fontWeight: "bold" }}>
-                  50% OFF
+                 Best Deal
                 </p>
                 <p
                   className="text-center"
@@ -59,7 +59,7 @@ function Homepage3() {
                   className=" p-0 myfontsub btn btn-white  "
                   style={{ width: "100px", border: "solid black" }}
                 >
-                  Explore
+                  Soon.
                 </button>
               </div>
             </div>

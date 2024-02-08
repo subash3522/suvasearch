@@ -1,38 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Global.css";
-import { Link } from "react-router-dom";
+
 
 function Imgupload() {
-  const [imgfile, setImgfile] = useState();
-  const [img, setImg] = useState([]);
-
-  const handlechangeimage = (e) => {
-    setImgfile(e.target.files[0]);
-  };
-
-  const displayImage = () => {
-    axios.get("http://localhost:5001/upload").then((res) => {
-      setImg(res.data);
-    });
-  };
-
-  const onuploadclicker = () => {
-    displayImage();
-    const formdata = new FormData();
-    formdata.append("image", imgfile);
-    axios
-      .post("http://localhost:5001/upload", formdata)
-      .then((res) => console.log(res.message))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    axios.get("http://localhost:5001/newtest").then((res) => {
-      // console.log(res.data[0].Email)
-    });
-  }, []);
-
   //new formfield
   const [mountainName, setMountainName] = useState("");
   const [weather, setweather] = useState("");
@@ -70,68 +41,12 @@ function Imgupload() {
   };
   //newformfield ends here
 
-  //mountains get
-
-  const [mountains, setMountains] = useState([]);
-
-  useEffect(() => {
-    const fetchMountains = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/api/mountains");
-        setMountains(response.data.mountains);
-      } catch (error) {
-        console.error("Error fetching mountains:", error);
-      }
-    };
-
-    fetchMountains();
-  }, []);
-
-  //mountains get ends here
-
-  //mountain get with id param:
-
-  const [mountainsId, setMountainsId] = useState([]);
-
-  useEffect(() => {
-    const fetchMountainsId = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/mountain/1");
-        // console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mountains:", error);
-      }
-    };
-
-    fetchMountainsId();
-  }, []);
-
-  //mountain get with id param ends here
-
-  //mountain get with budget param starts here
-
-  const [mountainsBudget, setMountainsBudget] = useState([]);
-
-  useEffect(() => {
-    const fetchMountainsBudget = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/mountains/low");
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mountains:", error);
-      }
-    };
-
-    fetchMountainsBudget();
-  }, []);
-  //mountain get with budget param ends here
-
   //login auth stats here
   const [auth, setAuth] = useState(false);
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
+    axios.get("http://localhost:5001/suvaauth").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
         setAuth(true);
@@ -142,41 +57,8 @@ function Imgupload() {
   });
   //login auth ends here
 
-  //like post starts here
-  const [userIdForLike, setUserIdForLike] = useState(1);
-
-  const handleOnLike = (postId) => {
-    axios
-      .post("http://localhost:5001/like", {
-        userIdForLIke: 1,
-        postIdForLike: postId,
-      })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-      });
-  };
-
-  //like post ends here
-
   return (
     <>
-      <div>
-        <input type="file" onChange={handlechangeimage} />
-        <button onClick={onuploadclicker}>upload</button>
-        {img.map((value, index) => (
-          <img
-            key={index}
-            src={`http://localhost:5001/${value.Image}`}
-            alt=""
-            style={{ height: "200px", width: "300px" }}
-          />
-        ))}
-        <div></div>
-      </div>
-
       <form onSubmit={handleFormSubmit}>
         <label>
           Mountain Name:
@@ -243,36 +125,6 @@ function Imgupload() {
         <br />
         <button type="submit">Uploads</button>
       </form>
-
-      <div className="product-container">
-        {mountains.map((value) => (
-          <Link
-            className="product-container"
-            to={auth ? `Description/${value.ID}` : ""}
-          >
-            <div className="fruit fade-in" key={value.ID}>
-              <h3 className="letter-animation">{value.mountainName}</h3>
-              <img
-                style={{ height: "200px" }}
-                src={`http://localhost:5001/${value.photoPath}`}
-                alt={value.mountainName}
-                className="letter-animati on"
-              />
-              <p className="letter-animation">{value.category}</p>
-              <p className="letter-animation">Save</p>
-              <p
-                className="letter-animation"
-                onClick={() => handleOnLike(value.ID)}
-              >
-                Like
-              </p>
-              <p className="letter-animation">Recommend</p>
-
-              <button className="shop-now-button">Shop Now</button>
-            </div>
-          </Link>
-        ))}
-      </div>
     </>
   );
 }
