@@ -14,7 +14,7 @@ function HomeRouter() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://https://apitesting-com.onrender.com/suvaauth").then((res) => {
+    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
       if (res.data.status === "success") {
         setAuth(true);
         console.log(res.data);
