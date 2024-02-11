@@ -1,0 +1,53 @@
+/* Form Styling */
+.form-wrapper {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-wrapper label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-wrapper label span {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-wrapper input[type="text"],
+  .form-wrapper select,
+  .form-wrapper input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 2px;
+    margin-bottom: 20px; /* Adjust the space between each form field */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding does not affect the final computed width */
+  }
+  
+  .form-wrapper button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-wrapper button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Adjustments for better spacing */
+  .form-wrapper br {
+    display: none; /* Removes <br> to rely on margin for spacing */
+  }
+  

@@ -7,27 +7,47 @@ import { Link } from "react-router-dom";
 
 
 function UserProfile() {
-  const { likeId } = useParams();
-  const [likedPost, setLikedPost] = useState([]);
+  // const { likeId } = useParams();
+  // const [likedPost, setLikedPost] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchLikedPost = async (a) => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:5001/like/${a}`);
+  //       setLikedPost(response.data);
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching mountains:", error);
+  //     }
+  //   };
+
+  //function to fetch saved items
+
+  //   fetchLikedPost(likeId);
+  // }, []);
+
+  const { SaveId } = useParams();
+  const [savedPost, setSavedPost] = useState([]);
 
   useEffect(() => {
     const fetchLikedPost = async (a) => {
       try {
-        const response = await axios.get(`http://localhost:5001/like/${a}`);
-        setLikedPost(response.data);
+        const response = await axios.get(`http://localhost:5001/save/${a}`);
+        setSavedPost(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
     };
 
-    fetchLikedPost(likeId);
+    fetchLikedPost(SaveId);
   }, []);
+
 
   return (
     <>
       <div className="product-container">
-        {likedPost.map((value) => (
+        {savedPost.map((value) => (
           <Link
           className="product-container"
           to={ `/Description/${value.ID}` }

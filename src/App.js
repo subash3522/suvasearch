@@ -24,13 +24,8 @@ import Description from "./Pages/Description";
 import UserProfile from "./UserProfile";
 import Explore from "./Pages/Explore";
 
-
 function App() {
   const [loginCheck, setLoginCheck] = useState(false);
-
-  
-
-  
 
   const loginClicker = (login) => {
     setLoginCheck(!loginCheck);
@@ -51,7 +46,7 @@ function App() {
               )
             }
           />
-          
+
           <Route path="/Details" element={<Details />} />
           <Route path="/Products" element={<Products />} />
 
@@ -60,12 +55,9 @@ function App() {
           <Route path="/Login" element={<Login />}></Route>
           <Route path="/Imgupload" element={<Imgupload />}></Route>
           <Route path="/Description/:id" element={<Description />}></Route>
-          <Route path="/like/:likeId" element={<UserProfile />}></Route>
+          {/* <Route path="/like/:likeId" element={<UserProfile />}></Route> */}
+          <Route path="/save/:saveId" element={<UserProfile />}></Route>
           <Route path="/Explore" element={<Explore />}></Route>
-
-
-          
-          
         </Routes>
       </Router>
 

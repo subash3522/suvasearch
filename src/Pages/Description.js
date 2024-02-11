@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+import "../Global.css";
 
 function Description() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ function Description() {
           `http://localhost:5001/mountain/${idh}`
         );
         setMountainId(response.data);
+        console.log(response.data);
         setPara(
           response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
         );
@@ -29,14 +31,35 @@ function Description() {
   }, [id]);
   return (
     <>
-      <div>
-        {para.map((value) => (
-          <div>
-            <p style={{ color: "red" }}>{value}</p>
-          </div>
-        ))}
+      <div style={{ maxWidth: "90%", margin: "0 auto", padding: "20px" }}>
+        <img
+          style={{
+            width: "100%",
+            height: "auto",
+            borderRadius: "8px",
+            marginBottom: "20px",
+          }}
+          src={`http://localhost:5001/${mountainId.photoPath}`}
+          alt={mountainId.mountainName}
+          className="card-image"
+        />
+
+        <div style={{ maxWidth: "100%", margin: "0 auto" }}>
+          {para.map((value, index) => (
+            <p
+              key={index}
+              style={{
+                color: "black",
+                textAlign: "justify",
+                marginBottom: "16px",
+                lineHeight: "1.6",
+              }}
+            >
+              {value}
+            </p>
+          ))}
+        </div>
       </div>
-      <div>{mountainId.ID}</div>
     </>
   );
 }

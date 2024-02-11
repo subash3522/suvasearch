@@ -85,6 +85,10 @@ function Explore() {
     };
 
     fetchMountains();
+
+    mountains.forEach((value) => {
+      totalLikeHandler(value.ID);
+    });
   }, []);
 
   //mountains get ends here
@@ -108,7 +112,6 @@ function Explore() {
     const fetchMountainsId = async () => {
       try {
         const response = await axios.get("http://localhost:5001/mountain/1");
-        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
@@ -128,7 +131,7 @@ function Explore() {
       const response = await axios.get(
         `http://localhost:5001/mountains/${bud}`
       );
-      console.log(response.data);
+
       setMountains(response.data);
     } catch (error) {
       console.error("Error fetching mountains:", error);
@@ -142,9 +145,8 @@ function Explore() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
+    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
       if (res.data.status === "success") {
-        console.log(res.data);
         setAuth(true);
       } else {
         console.log(res.data);
@@ -162,15 +164,30 @@ function Explore() {
         userIdForLIke: 1,
         postIdForLike: postId,
       })
-      .then((res) => {
-        console.log(res.data);
-      })
+      .then((res) => {})
       .catch((error) => {
         console.error("Error occurred:", error);
       });
   };
 
   //like post ends here
+
+  //save post starts here
+  const [userIdForSave, setUserIdForSave] = useState(1);
+
+  const handleOnSave = (postId) => {
+    axios
+      .post("http://localhost:5001/Save", {
+        userIdForSave: 1,
+        postIdForSave: postId,
+      })
+      .then((res) => {})
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
+
+  //save post ends here
 
   //get user id from local storage
   const [userId, setUserId] = useState("");
@@ -191,13 +208,16 @@ function Explore() {
   //likes counter code starts here
   const [totalLikes, setTotalLIkes] = useState();
 
-  const totalLikeHandler = async (like, PostID) => {
+  const totalLikeHandler = async (like) => {
+    {
+      /* like is the PostID */
+    }
     try {
       const response = await axios.get(
         `http://localhost:5001/likecounter/${like}`
       );
-      setTotalLIkes((prev) => ({ ...prev, [PostID]: response.data.length }));
-      // setTotalLIkes(response.data.length);
+      setTotalLIkes((prev) => ({ ...prev, [like]: response.data.length }));
+      console.log(totalLikes);
     } catch (error) {
       console.error("Error fetching mountains:", error);
     }
@@ -425,14 +445,14 @@ function Explore() {
         }}
       >
         {mountains.map((value) => (
-          <Link
-            className="product-container text-decoration-none text-black"
-            to={auth ? `/Description/${value.ID}` : ""}
-          >
-            <div className="card-container fade-in" key={value.ID}>
-              <h3 className="card-title letter-animation">
-                {value.mountainName}
-              </h3>
+          <div className="card-container fade-in" key={value.ID}>
+            <h3 className="card-title letter-animation">
+              {value.mountainName}
+            </h3>
+            <Link
+              className="product-container text-decoration-none text-black"
+              to={auth ? `/Description/${value.ID}` : ""}
+            >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
                 src={`http://localhost:5001/${value.photoPath}`}
@@ -440,17 +460,17 @@ function Explore() {
                 className="card-image letter-animation"
               />
               <p className="card-category letter-animation">{value.category}</p>
-              <div className="card-buttons d-flex justify-content-between">
-                <button
-                  className="card-button letter-animation"
-                  onClick={() => handleOnLike(value.ID)}
-                >
-                  Like:{totalLikes}
-                </button>
-                <button className="card-button letter-animation">Save</button>
-              </div>
+            </Link>
+            <div className="card-buttons d-flex justify-content-between">
+              <button
+                className="card-button letter-animation"
+                // onClick={() => handleOnLike(value.ID)}
+              >
+                Likes:
+              </button>
+              <button className="card-button letter-animation" onClick={()=>handleOnSave(value.ID)}>Save</button>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </>

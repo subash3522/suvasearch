@@ -23,14 +23,36 @@ function Signup() {
     e.preventDefault();
     axios
       // .post("http://localhost:5001/suvasearchsignup", login)
-      .post("https://apitesting-com.onrender.com/suvasearchsignup", login)
+      .post("http://localhost:5001/suvasearchsignup", login)
       .then((res) => {
         console.log(res.data + "dandanadan");
+        
+        
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
+      .catch((error) => {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log("Error data:", error.response.data);
+        console.log("Error status:", error.response.status);
+        console.log("Error headers:", error.response.headers);
+        if (error.response.data.error) {
+          console.log("Error message:", error.response.data.error);
+        } else {
+          // Handle other types of errors (if any)
+          console.log("An error occurred, but no specific message was provided");
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+    });
   };
 
-  
   return (
     <>
       <div className="for-login d-flex justify-content-center align-items-center bg-success">

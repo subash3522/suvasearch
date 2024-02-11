@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Global.css";
-
+import "./Imgupload.css";
 
 function Imgupload() {
   //new formfield
@@ -59,60 +59,84 @@ function Imgupload() {
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="form-wrapper">
         <label>
-          Mountain Name:
+          <span>Mountain Name:</span>
           <input
             type="text"
             value={mountainName}
             onChange={(e) => setMountainName(e.target.value)}
           />
         </label>
-        <br />
+
         <label>
-          Weather:
-          <input
+          <span>Weather:</span>
+          <select
             type="text"
             value={weather}
             onChange={(e) => setweather(e.target.value)}
-          />
+          >
+            <option value="">Select Weather</option>
+            <option value="Hot">Hot</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Cold">Cold</option>
+          </select>
         </label>
-        <br />
+
         <label>
-          Popularity:
-          <input
+          <span>Popularity:</span>
+          <select
             type="text"
             value={popularity}
             onChange={(e) => setPopularity(e.target.value)}
-          />
+          >
+            <option value="">Select Popularity</option>
+            <option value="High">High</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Low">Low</option>
+          </select>
         </label>
-        <br />
+
         <label>
-          Budget:
-          <input
+          <span>Budget:</span>
+          <select
             type="text"
             value={budget}
             onChange={(e) => setBudget(e.target.value)}
-          />
+          >
+            <option value="">Select Budget</option>
+            <option value="High">High</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Low">Low</option>
+          </select>
         </label>
-        <br />
+
         <label>
-          Category:
-          <input
-            type="text"
+          <span>Category:</span>
+          <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-          />
+          >
+            <option value="">Select a category</option>{" "}
+            {/* Optional: Prompt the user to select an option */}
+            <option value="Sports">Hiking</option>
+            <option value="News">Touring</option>
+            <option value="Entertainment">Climbing</option>
+            <option value="Education">Family Time</option>
+            <option value="Technology">Riding</option>
+            {/* Add more categories as needed */}
+          </select>
         </label>
         <br />
         <label>
           Photo:
           <input
             type="file"
-            accept=".jpeg"
+            accept="image/*"
             onChange={(e) => handleFileChange(e, setPhoto)}
           />
         </label>
+
         <br />
         <label>
           Description:
