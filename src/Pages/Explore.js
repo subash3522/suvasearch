@@ -77,7 +77,7 @@ function Explore() {
   useEffect(() => {
     const fetchMountains = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/mountains");
+        const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
         setMountains(response.data.mountains);
       } catch (error) {
         console.error("Error fetching mountains:", error);
@@ -85,18 +85,20 @@ function Explore() {
     };
 
     fetchMountains();
-
-    mountains.forEach((value) => {
-      totalLikeHandler(value.ID);
-    });
   }, []);
 
   //mountains get ends here
 
+  const likeRenderer = ()=>{
+    mountains.forEach((value) => {
+      totalLikeHandler(value.ID);
+    })
+  }
+
   //fetch mountains outside useeffects starts here
   const fetchMountains = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/mountains");
+      const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
       setMountains(response.data.mountains);
     } catch (error) {
       console.error("Error fetching mountains:", error);
@@ -156,12 +158,12 @@ function Explore() {
   //login auth ends here
 
   //like post starts here
-  const [userIdForLike, setUserIdForLike] = useState(1);
+  const [userIdForLike, setUserIdForLike] = useState();
 
   const handleOnLike = (postId) => {
     axios
       .post("http://localhost:5001/like", {
-        userIdForLIke: 1,
+        userIdForLIke: userId,
         postIdForLike: postId,
       })
       .then((res) => {})
@@ -173,12 +175,12 @@ function Explore() {
   //like post ends here
 
   //save post starts here
-  const [userIdForSave, setUserIdForSave] = useState(1);
+  const [userIdForSave, setUserIdForSave] = useState();
 
   const handleOnSave = (postId) => {
     axios
       .post("http://localhost:5001/Save", {
-        userIdForSave: 1,
+        userIdForSave: userId,
         postIdForSave: postId,
       })
       .then((res) => {})
@@ -206,7 +208,7 @@ function Explore() {
   }, []);
 
   //likes counter code starts here
-  const [totalLikes, setTotalLIkes] = useState();
+  const [totalLikes, setTotalLikes] = useState({});
 
   const totalLikeHandler = async (like) => {
     {
@@ -216,12 +218,28 @@ function Explore() {
       const response = await axios.get(
         `http://localhost:5001/likecounter/${like}`
       );
-      setTotalLIkes((prev) => ({ ...prev, [like]: response.data.length }));
-      console.log(totalLikes);
+      setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
       console.error("Error fetching mountains:", error);
     }
   };
+
+
+
+  useEffect(() => {
+    
+
+    mountains.forEach((value) => {
+      totalLikeHandler(value.ID);
+    })
+
+  }, [mountains]);
+
+
+
+ 
+ 
+  
 
   //like count storing functionality ends here
 
@@ -455,20 +473,45 @@ function Explore() {
             >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
-                src={`http://localhost:5001/${value.photoPath}`}
+                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
                 alt={value.mountainName}
                 className="card-image letter-animation"
               />
               <p className="card-category letter-animation">{value.category}</p>
             </Link>
-            <div className="card-buttons d-flex justify-content-between">
+            <div className="card-buttons d-flex justify-content-between ">
+              <div
+                className="card-button letter-animation"
+                onClick={() => {handleOnLike(value.ID) ;likeRenderer()}}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={16}
+                  height={16}
+                  fill="currentColor"
+                  className="bi bi-hand-thumbs-up-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+                </svg>
+                {totalLikes[value.ID]}
+              </div>
+              
               <button
                 className="card-button letter-animation"
-                // onClick={() => handleOnLike(value.ID)}
+                // onClick={auth ? () => handleOnSave(value.ID) : ""}
               >
-                Likes:
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-save"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1z" />
+                </svg>
               </button>
-              <button className="card-button letter-animation" onClick={()=>handleOnSave(value.ID)}>Save</button>
             </div>
           </div>
         ))}

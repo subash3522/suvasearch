@@ -61,7 +61,7 @@ function Imgupload() {
     <>
       <form onSubmit={handleFormSubmit} className="form-wrapper">
         <label>
-          <span>Mountain Name:</span>
+          <span>Destination Name:</span>
           <input
             type="text"
             value={mountainName}
@@ -119,11 +119,12 @@ function Imgupload() {
           >
             <option value="">Select a category</option>{" "}
             {/* Optional: Prompt the user to select an option */}
-            <option value="Sports">Hiking</option>
-            <option value="News">Touring</option>
+            <option value="Hiking">Hiking</option>
+            <option value="Touring">Touring</option>
             <option value="Entertainment">Climbing</option>
-            <option value="Education">Family Time</option>
-            <option value="Technology">Riding</option>
+            <option value="Family Time">Family Time</option>
+            <option value="Biking">Biking</option>
+            <option value="Religious">Religious</option>
             {/* Add more categories as needed */}
           </select>
         </label>

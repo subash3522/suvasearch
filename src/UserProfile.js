@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./Global.css";
-import { Link } from "react-router-dom";
 
+import "./UserProfile.css";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   // const { likeId } = useParams();
@@ -26,27 +26,26 @@ function UserProfile() {
   //   fetchLikedPost(likeId);
   // }, []);
 
-  const { SaveId } = useParams();
-  const [savedPost, setSavedPost] = useState([]);
+  const { saveId } = useParams();
+  const [savedPosts, setSavedPosts] = useState([]);
 
   useEffect(() => {
     const fetchLikedPost = async (a) => {
       try {
-        const response = await axios.get(`http://localhost:5001/save/${a}`);
-        setSavedPost(response.data);
+        const response = await axios.get(`http://localhost:5001/profile/${a}`);
+        setSavedPosts(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
     };
 
-    fetchLikedPost(SaveId);
+    fetchLikedPost(saveId);
   }, []);
-
 
   return (
     <>
-      <div className="product-container">
+      {/* <div className="product-container">
         {savedPost.map((value) => (
           <Link
           className="product-container"
@@ -66,7 +65,26 @@ function UserProfile() {
           </div>
           </Link>
         ))}
+      </div> */}
+
+<div className="profile-container">
+      <h2 className="profile-heading">Your Saved Posts</h2>
+      <div className="posts-grid">
+        {savedPosts.map((value) => (
+          <Link to={`/Description/${value.ID}`} key={value.ID} className="post-item">
+            <img
+              src={`http://localhost:5001/${value.photoPath}`}
+              alt={value.mountainName}
+            />
+            <div className="post-details">
+              <h3 className="post-title">{value.mountainName}</h3>
+              <p className="post-category">{value.category}</p>
+             
+            </div>
+          </Link>
+        ))}
       </div>
+    </div>
     </>
   );
 }

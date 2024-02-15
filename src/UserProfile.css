@@ -1,0 +1,81 @@
+/* Profile page container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+  
+  /* Heading */
+  .profile-heading {
+    font-size: 24px;
+    color: #333; /* Darker text for better readability */
+    margin-bottom: 20px;
+  }
+  
+  /* Grid for displaying saved posts */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  /* Individual post container */
+  .post-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none; /* Removes underlining from links */
+    color: inherit; /* Ensures text color is consistent */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    border-radius: 8px; /* Adds rounded corners */
+    overflow: hidden; /* Ensures nothing overflows the rounded corners */
+  }
+  
+  .post-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .post-item img {
+    width: 100%;
+    display: block; /* Removes bottom space/margin */
+  }
+  
+  /* Post details */
+  .post-details {
+    padding: 15px;
+    text-align: center; /* Center-aligns the text */
+  }
+  
+  .post-title,
+  .post-category {
+    margin: 5px 0;
+    font-weight: bold; /* Makes text bold */
+  }
+  
+  .post-category {
+    font-size: 0.9em; /* Slightly smaller text for category */
+    color: #666; /* Lighter text for category */
+  }
+  
+  .shop-now-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center; /* Ensure button text is centered */
+    display: block; /* Make the button expand to full width of its container */
+    width: 100%;
+    border-radius: 5px; /* Rounded corners for the button */
+  }
+  
+  .shop-now-button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -56,7 +56,7 @@ function App() {
           <Route path="/Imgupload" element={<Imgupload />}></Route>
           <Route path="/Description/:id" element={<Description />}></Route>
           {/* <Route path="/like/:likeId" element={<UserProfile />}></Route> */}
-          <Route path="/save/:saveId" element={<UserProfile />}></Route>
+          <Route path="/profile/:saveId" element={<UserProfile />}></Route>
           <Route path="/Explore" element={<Explore />}></Route>
         </Routes>
       </Router>
