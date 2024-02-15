@@ -60,7 +60,7 @@ function Explore() {
     formData.append("description", description);
 
     try {
-      await axios.post("http://localhost:5001/api/addMountain", formData, {
+      await axios.post("https://apitesting-com.onrender.com/api/addMountain", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
