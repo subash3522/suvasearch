@@ -25,7 +25,7 @@ function HomepageALI({ loginCheck }) {
 
 
   const handleLogout = ()=>{
-    axios.get("http://localhost:5001/suvalogout")
+    axios.get("https://apitesting-com.onrender.com/suvalogout")
     .then(res=>{
        window.location.reload(true)
        console.log(res.status);

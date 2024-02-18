@@ -89,11 +89,11 @@ function Explore() {
 
   //mountains get ends here
 
-  const likeRenderer = ()=>{
+  const likeRenderer = () => {
     mountains.forEach((value) => {
       totalLikeHandler(value.ID);
-    })
-  }
+    });
+  };
 
   //fetch mountains outside useeffects starts here
   const fetchMountains = async () => {
@@ -113,7 +113,7 @@ function Explore() {
   useEffect(() => {
     const fetchMountainsId = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/mountain/1");
+        const response = await axios.get("https://apitesting-com.onrender.com/mountain/1");
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
@@ -131,7 +131,7 @@ function Explore() {
   const fetchMountainsBudget = async (bud) => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/mountains/${bud}`
+        `https://apitesting-com.onrender.com/mountains/${bud}`
       );
 
       setMountains(response.data);
@@ -162,7 +162,7 @@ function Explore() {
 
   const handleOnLike = (postId) => {
     axios
-      .post("http://localhost:5001/like", {
+      .post("https://apitesting-com.onrender.com/like", {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
@@ -179,7 +179,7 @@ function Explore() {
 
   const handleOnSave = (postId) => {
     axios
-      .post("http://localhost:5001/Save", {
+      .post("https://apitesting-com.onrender.com/Save", {
         userIdForSave: userId,
         postIdForSave: postId,
       })
@@ -216,7 +216,7 @@ function Explore() {
     }
     try {
       const response = await axios.get(
-        `http://localhost:5001/likecounter/${like}`
+        `https://apitesting-com.onrender.com/likecounter/${like}`
       );
       setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
@@ -224,22 +224,11 @@ function Explore() {
     }
   };
 
-
-
   useEffect(() => {
-    
-
     mountains.forEach((value) => {
       totalLikeHandler(value.ID);
-    })
-
+    });
   }, [mountains]);
-
-
-
- 
- 
-  
 
   //like count storing functionality ends here
 
@@ -482,7 +471,10 @@ function Explore() {
             <div className="card-buttons d-flex justify-content-between ">
               <div
                 className="card-button letter-animation"
-                onClick={() => {handleOnLike(value.ID) ;likeRenderer()}}
+                onClick={() => {
+                  handleOnLike(value.ID);
+                  likeRenderer();
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -496,7 +488,7 @@ function Explore() {
                 </svg>
                 {totalLikes[value.ID]}
               </div>
-              
+
               <button
                 className="card-button letter-animation"
                 // onClick={auth ? () => handleOnSave(value.ID) : ""}

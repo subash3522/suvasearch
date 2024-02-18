@@ -14,13 +14,13 @@ function Description() {
     const fetchMountainsId = async (idh) => {
       try {
         const response = await axios.get(
-          `https://apitesting-com.onrender.com/${idh}`
+          `https://apitesting-com.onrender.com/mountain/${idh}`
         );
-        setMountainId(response.data);
+        setMountainId(response.data[0]);
 
-        setPara(
-          response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
-        );
+        // setPara(
+        //   response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
+        // );
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
@@ -44,6 +44,12 @@ function Description() {
         />
 
         <div style={{ maxWidth: "100%", margin: "0 auto" }}>
+          {/* {`http://localhost:5001/${mountainId.descriptionPath}`} */}
+          {/* <iframe
+            src={`http://localhost:5001/description_1707762803564.txt`}
+            width="100%"
+           
+          ></iframe> */}
           {para.map((value, index) => (
             <p
               key={index}
