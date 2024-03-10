@@ -12,20 +12,20 @@ import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { loginToggler } from "../Reducer/Index";
 import { tfTogler } from "../Actioncreator/Index";
 import axios from "axios";
 
 function HomepageALI({ loginCheck }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const loginTogglerState = useSelector((state) => state.xyz);
   <script>AOS.init();</script>;
   axios.defaults.withCredentials= true;
 
 
   const handleLogout = ()=>{
-    axios.get("https://apitesting-com.onrender.com/suvalogout")
+    axios.get("http://localhost:5001/suvalogout")
     .then(res=>{
        window.location.reload(true)
        console.log(res.status);
@@ -67,7 +67,7 @@ function HomepageALI({ loginCheck }) {
               </div>
               <div className="d-flex justify-content-evenly ">
                 <button
-                  onClick={() => dispatch(tfTogler())}
+                  // onClick={() => dispatch(tfTogler())}
                   className=" p-2  bg-black  text-white  "
                   style={{ width: "220px", border: "solid black 1px" }}
                 >

@@ -11,49 +11,70 @@ import {
 import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { loginToggler } from "../Reducer/Index";
 import { tfTogler } from "../Actioncreator/Index";
+import { toggler } from "./ReactTooklitFolder/TogglerSlice";
 
 function Homepage({ loginCheck }) {
-
   const dispatch = useDispatch();
-  const loginTogglerState = useSelector((state) => state.xyz);
-  <script>
-  AOS.init();
-</script>
+  const loginTogglerState = useSelector((state) => state.togglerr.value);
+  console.log(loginTogglerState);
+  //  const lgntoggler = useSelector((state)=>state.togglerr.value)
+  <script>AOS.init();</script>;
   return (
     <>
-    <div className="imagepreloader" />
-      <div className="whole-body " style={{height:'100vh'}}>
-        <div className="container-fluid  d-flex align-items-center justify-content-center  h-global"  >
-          <div className="text-white text-center" style={{height:'40%',width:'400px'}}>
+      <div className="imagepreloader" />
+      <div className="whole-body " style={{ height: "100vh" }}>
+        <div className="container-fluid  d-flex align-items-center justify-content-center  h-global">
+          <div
+            className="text-white text-center"
+            style={{ height: "40%", width: "400px" }}
+          >
             <div className="d-flex flex-column">
               <div className="d-flex flex-column mb-3">
-                <h1 className="text-center" style={{ fontFamily: "poppins", fontSize:'3em',fontWeight:'bold' }}>
+                <h1
+                  className="text-center"
+                  style={{
+                    fontFamily: "poppins",
+                    fontSize: "3em",
+                    fontWeight: "bold",
+                  }}
+                >
                   Explore Behond Limits.
                 </h1>
                 <p
                   className="text-left mt-3"
-                  style={{ fontFamily: "open-sans", fontSize: "1rem", color:"CaptionText" }}
+                  style={{
+                    fontFamily: "open-sans",
+                    fontSize: "1rem",
+                    color: "CaptionText",
+                  }}
                 >
                   {" "}
-                  Discover new horizons and create unforgettable memories. Your adventure starts here.
+                  Discover new horizons and create unforgettable memories. Your
+                  adventure starts here.
                 </p>
               </div>
-        <div 
-         
-        className="d-flex justify-content-evenly ">
-              <button 
-               onClick={() => dispatch(tfTogler())}
-              className=" p-2  bg-black  text-white  "
-                  style={{ width: "120px", border: "solid black 1px" }}>Login</button>
-              <button
-             
+              <div className="d-flex justify-content-evenly ">
+                <button
+                   onClick={() => dispatch(toggler())}
+                  className=" p-2  bg-black  text-white  "
+                  style={{ width: "120px", border: "solid black 1px" }}
+                >
+                  Login
+                </button>
+                <button
                   className="  p-2  bg-transparent text-black  "
                   style={{ width: "110px", border: "solid white 1px" }}
-                  ><Link to='/Signup' style={{color:"black", textDecoration:'none'}}>Register</Link></button>
+                >
+                  <Link
+                    to="/Signup"
+                    style={{ color: "black", textDecoration: "none" }}
+                  >
+                    Register
+                  </Link>
+                </button>
               </div>
               {/* <form className="d-flex mt-3" role="search">
                 <input
@@ -114,7 +135,6 @@ function Homepage({ loginCheck }) {
 
       {/* {loginCheck && <Signup/>} */}
       {loginTogglerState && <Login />}
-      
 
       {/* {loginCheck && <Blured/>} */}
       {loginTogglerState && <Blured />}

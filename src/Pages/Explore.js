@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDesticationPost } from "./ReactTooklitFolder/ApiSlice";
 
 function Explore() {
   const [imgfile, setImgfile] = useState();
@@ -33,6 +35,17 @@ function Explore() {
     });
   }, []);
 
+  //calling state using redux toolkit
+  const fetchPost = useSelector((state) => state.explore.data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchDesticationPost());
+    console.log(fetchPost);
+  },[]);
+
+  //calling state using redux toolkit ends here
+
   //new formfield
   const [mountainName, setMountainName] = useState("");
   const [weather, setweather] = useState("");
@@ -60,7 +73,7 @@ function Explore() {
     formData.append("description", description);
 
     try {
-      await axios.post("https://apitesting-com.onrender.com/api/addMountain", formData, {
+      await axios.post("http://localhost:5001/api/addMountain", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
@@ -77,8 +90,9 @@ function Explore() {
   useEffect(() => {
     const fetchMountains = async () => {
       try {
-        const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
-        setMountains(response.data.mountains);
+        const response = await axios.get("http://localhost:5001/api/mountains");
+        setMountains(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
@@ -98,8 +112,8 @@ function Explore() {
   //fetch mountains outside useeffects starts here
   const fetchMountains = async () => {
     try {
-      const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
-      setMountains(response.data.mountains);
+      const response = await axios.get("http://localhost:5001/api/mountains");
+      setMountains(response.data);
     } catch (error) {
       console.error("Error fetching mountains:", error);
     }
@@ -113,7 +127,7 @@ function Explore() {
   useEffect(() => {
     const fetchMountainsId = async () => {
       try {
-        const response = await axios.get("https://apitesting-com.onrender.com/mountain/1");
+        const response = await axios.get("http://localhost:5001/mountain/1");
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
@@ -131,7 +145,7 @@ function Explore() {
   const fetchMountainsBudget = async (bud) => {
     try {
       const response = await axios.get(
-        `https://apitesting-com.onrender.com/mountains/${bud}`
+        `http://localhost:5001/mountains/${bud}`
       );
 
       setMountains(response.data);
@@ -147,7 +161,7 @@ function Explore() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
+    axios.get("http://localhost:5001/suvaauth").then((res) => {
       if (res.data.status === "success") {
         setAuth(true);
       } else {
@@ -162,7 +176,7 @@ function Explore() {
 
   const handleOnLike = (postId) => {
     axios
-      .post("https://apitesting-com.onrender.com/like", {
+      .post("http://localhost:5001/like", {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
@@ -179,7 +193,7 @@ function Explore() {
 
   const handleOnSave = (postId) => {
     axios
-      .post("https://apitesting-com.onrender.com/Save", {
+      .post("http://localhost:5001/Save", {
         userIdForSave: userId,
         postIdForSave: postId,
       })
@@ -216,7 +230,7 @@ function Explore() {
     }
     try {
       const response = await axios.get(
-        `https://apitesting-com.onrender.com/likecounter/${like}`
+        `http://localhost:5001/likecounter/${like}`
       );
       setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
@@ -462,7 +476,7 @@ function Explore() {
             >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
-                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
+                src={`http://localhost:5001/${value.photoPath}`}
                 alt={value.mountainName}
                 className="card-image letter-animation"
               />

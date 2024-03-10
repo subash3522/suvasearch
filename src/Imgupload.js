@@ -142,9 +142,8 @@ function Imgupload() {
         <label>
           Description:
           <input
-            type="file"
-            accept=".txt"
-            onChange={(e) => handleFileChange(e, setDescription)}
+           value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </label>
         <br />

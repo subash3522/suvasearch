@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import "../Global.css";
+import myContextVariable from "../Context FIles/Context";
 
 function Description() {
   const { id } = useParams();
+
+  const declaredVariable = useContext(myContextVariable);
 
   const [mountainId, setMountainId] = useState([]);
   const [para, setPara] = useState([]);
@@ -14,17 +17,18 @@ function Description() {
     const fetchMountainsId = async (idh) => {
       try {
         const response = await axios.get(
-          `https://apitesting-com.onrender.com/mountain/${idh}`
+          `http://localhost:5001/mountain/${idh}`
         );
-        setMountainId(response.data[0]);
+        setMountainId(response.data);
 
-        // setPara(
-        //   response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
-        // );
+        setPara(
+          response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
+        );
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
     };
+    console.log(declaredVariable.nextVariable);
 
     fetchMountainsId(id);
   }, [id]);
@@ -38,18 +42,12 @@ function Description() {
             borderRadius: "8px",
             marginBottom: "20px",
           }}
-          src={`https://apitesting-com.onrender.com/${mountainId.photoPath}`}
+          src={`http://localhost:5001/${mountainId.photoPath}`}
           alt={mountainId.mountainName}
           className="card-image"
         />
 
         <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          {/* {`http://localhost:5001/${mountainId.descriptionPath}`} */}
-          {/* <iframe
-            src={`http://localhost:5001/description_1707762803564.txt`}
-            width="100%"
-           
-          ></iframe> */}
           {para.map((value, index) => (
             <p
               key={index}

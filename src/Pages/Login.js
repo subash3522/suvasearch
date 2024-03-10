@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { tfTogler } from "../Actioncreator/Index";
+import { useDispatch, useSelector } from "react-redux";
+// import { tfTogler } from "../Actioncreator/Index";
+import { toggler } from "./ReactTooklitFolder/TogglerSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const dispatch = useDispatch();
+const dispatch = useDispatch()
+
+  const togglerSwitch = useSelector((state) => 
+    state.togglerr.value
+  );
+  console.log(togglerSwitch);
   axios.defaults.withCredentials = true;
 
   const [loginValue, setLoginValue] = useState({
@@ -21,7 +27,7 @@ function Login() {
   const onLoginHandle = (e) => {
     e.preventDefault();
     axios
-      .post("https://apitesting-com.onrender.com/suvasearchlogin", loginValue, {
+      .post("http://localhost:5001/suvasearchlogin", loginValue, {
         withCredentials: true,
       })
       .then((res) => {
@@ -67,7 +73,7 @@ function Login() {
               <div className="modal-header p-5 pb-4 border-bottom-0">
                 <h1 className="fw-bold mb-0 fs-2">Account Login</h1>
                 <button
-                  onClick={() => dispatch(tfTogler())}
+                  onClick={() => dispatch(toggler())}
                   className="btn btn-danger"
                 >
                   <h1 className=" mb-0 fs-2">X</h1>

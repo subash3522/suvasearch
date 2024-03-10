@@ -23,6 +23,7 @@ import Imgupload from "./Imgupload";
 import Description from "./Pages/Description";
 import UserProfile from "./UserProfile";
 import Explore from "./Pages/Explore";
+import State from "./Context FIles/State";
 
 function App() {
   const [loginCheck, setLoginCheck] = useState(false);
@@ -32,34 +33,36 @@ function App() {
   };
   return (
     <>
-      <Router>
-        <Navbar loginClicker={loginClicker} />
+      <State>
+        <Router>
+          <Navbar loginClicker={loginClicker} />
 
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomeRouter /> ? (
-                <HomeRouter loginCheck={loginCheck} />
-              ) : (
-                <Blured />
-              )
-            }
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomeRouter /> ? (
+                  <HomeRouter loginCheck={loginCheck} />
+                ) : (
+                  <Blured />
+                )
+              }
+            />
 
-          <Route path="/Details" element={<Details />} />
-          <Route path="/Products" element={<Products />} />
+            <Route path="/Details" element={<Details />} />
+            <Route path="/Products" element={<Products />} />
 
-          <Route path="/ReducerPage" element={<ReducerPage />} />
-          <Route path="/Signup" element={<Signup />}></Route>
-          <Route path="/Login" element={<Login />}></Route>
-          <Route path="/Imgupload" element={<Imgupload />}></Route>
-          <Route path="/Description/:id" element={<Description />}></Route>
-          {/* <Route path="/like/:likeId" element={<UserProfile />}></Route> */}
-          <Route path="/profile/:saveId" element={<UserProfile />}></Route>
-          <Route path="/Explore" element={<Explore />}></Route>
-        </Routes>
-      </Router>
+            <Route path="/ReducerPage" element={<ReducerPage />} />
+            <Route path="/Signup" element={<Signup />}></Route>
+            <Route path="/Login" element={<Login />}></Route>
+            <Route path="/Imgupload" element={<Imgupload />}></Route>
+            <Route path="/Description/:id" element={<Description />}></Route>
+            {/* <Route path="/like/:likeId" element={<UserProfile />}></Route> */}
+            <Route path="/profile/:saveId" element={<UserProfile />}></Route>
+            <Route path="/Explore" element={<Explore />}></Route>
+          </Routes>
+        </Router>
+      </State>
 
       {/* <Navbar/>
  <Homepage/>
