@@ -8,22 +8,21 @@ import { Element } from "react-scroll";
 import HomepageALI from "./HomepageALI";
 import axios from "axios";
 import { useEffect } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { authCheckerFunction } from "./ReactTooklitFolder/AuthSlice";
+import { useDispatch } from "react-redux";
 
 function HomeRouter() {
-  const [auth, setAuth] = useState(false);
   axios.defaults.withCredentials = true;
 
+  const auth = useSelector((state) => state.auth.data);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
-      if (res.data.status === "success") {
-        setAuth(true);
-        console.log(res.data);
-      } else {
-        console.log(res.data);
-      }
-    });
+    dispatch(authCheckerFunction());
   });
-  
+
+  console.log(auth);
 
   return (
     <>

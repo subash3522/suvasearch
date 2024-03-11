@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: false,
+  
 };
 export const togglerSlice = createSlice({
   name: "togglerSlice",

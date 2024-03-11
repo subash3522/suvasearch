@@ -6,102 +6,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDesticationPost } from "./ReactTooklitFolder/ApiSlice";
 
 function Explore() {
-  const [imgfile, setImgfile] = useState();
-  const [img, setImg] = useState([]);
 
-  const handlechangeimage = (e) => {
-    setImgfile(e.target.files[0]);
-  };
 
-  const displayImage = () => {
-    axios.get("http://localhost:5001/upload").then((res) => {
-      setImg(res.data);
-    });
-  };
-
-  const onuploadclicker = () => {
-    displayImage();
-    const formdata = new FormData();
-    formdata.append("image", imgfile);
-    axios
-      .post("http://localhost:5001/upload", formdata)
-      .then((res) => console.log(res.message))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    axios.get("http://localhost:5001/newtest").then((res) => {
-      // console.log(res.data[0].Email)
-    });
-  }, []);
 
   //calling state using redux toolkit
-  const fetchPost = useSelector((state) => state.explore.data);
+  const mountains = useSelector((state) => state.explore.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDesticationPost());
-    console.log(fetchPost);
+    
   },[]);
+
+ 
 
   //calling state using redux toolkit ends here
 
-  //new formfield
-  const [mountainName, setMountainName] = useState("");
-  const [weather, setweather] = useState("");
-  const [popularity, setPopularity] = useState("");
-  const [budget, setBudget] = useState("");
-  const [category, setCategory] = useState("");
-  const [photo, setPhoto] = useState(null);
-  const [description, setDescription] = useState(null);
+ 
 
-  const handleFileChange = (e, setter) => {
-    const file = e.target.files[0];
-    setter(file);
-  };
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("mountainName", mountainName);
-    formData.append("weather", weather);
-    formData.append("popularity", popularity);
-    formData.append("budget", budget);
-    formData.append("category", category);
-    formData.append("photo", photo);
-    formData.append("description", description);
-
-    try {
-      await axios.post("http://localhost:5001/api/addMountain", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      console.log("Mountain added successfully");
-    } catch (error) {
-      console.error("Error adding mountain:", error);
-    }
-  };
-  //newformfield ends here
-
-  //mountains get
-
-  const [mountains, setMountains] = useState([]);
-
-  useEffect(() => {
-    const fetchMountains = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/api/mountains");
-        setMountains(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching mountains:", error);
-      }
-    };
-
-    fetchMountains();
-  }, []);
-
-  //mountains get ends here
+ 
 
   const likeRenderer = () => {
     mountains.forEach((value) => {
@@ -109,16 +32,7 @@ function Explore() {
     });
   };
 
-  //fetch mountains outside useeffects starts here
-  const fetchMountains = async () => {
-    try {
-      const response = await axios.get("http://localhost:5001/api/mountains");
-      setMountains(response.data);
-    } catch (error) {
-      console.error("Error fetching mountains:", error);
-    }
-  };
-  //fetch mountains outside  useeffects ends here
+
 
   //mountain get with id param:
 
@@ -140,19 +54,7 @@ function Explore() {
 
   //mountain get with budget param starts here
 
-  const [mountainsBudget, setMountainsBudget] = useState([]);
-
-  const fetchMountainsBudget = async (bud) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5001/mountains/${bud}`
-      );
-
-      setMountains(response.data);
-    } catch (error) {
-      console.error("Error fetching mountains:", error);
-    }
-  };
+ 
 
   //mountain get with budget param ends here
 
@@ -270,7 +172,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("Hot")}
+                  // onClick={() => fetchMountainsBudget("Hot")}
                 >
                   Hot
                 </button>
@@ -278,7 +180,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("Medium")}
+                  // onClick={() => fetchMountainsBudget("Medium")}
                 >
                   Medium
                 </button>
@@ -286,7 +188,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("Cold")}
+                  // onClick={() => fetchMountainsBudget("Cold")}
                 >
                   Cold
                 </button>
@@ -308,7 +210,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Easy")}
+                  // onClick={() => fetchMountains("Easy")}
                 >
                   Easy
                 </button>
@@ -316,7 +218,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Moderate")}
+                  // onClick={() => fetchMountains("Moderate")}
                 >
                   Moderate
                 </button>
@@ -324,7 +226,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Hard")}
+                  // onClick={() => fetchMountains("Hard")}
                 >
                   Hard
                 </button>
@@ -346,7 +248,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Low")}
+                  // onClick={() => fetchMountains("Low")}
                 >
                   Low
                 </button>
@@ -354,7 +256,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Medium")}
+                  // onClick={() => fetchMountains("Medium")}
                 >
                   Medium
                 </button>
@@ -362,7 +264,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("High")}
+                  // onClick={() => fetchMountains("High")}
                 >
                   High
                 </button>
@@ -382,7 +284,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Easy")}
+                  // onClick={() => fetchMountains("Easy")}
                 >
                   Easy
                 </button>
@@ -390,7 +292,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Moderate")}
+                  // onClick={() => fetchMountains("Moderate")}
                 >
                   Moderate
                 </button>
@@ -398,7 +300,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountains("Hard")}
+                  // onClick={() => fetchMountains("Hard")}
                 >
                   Hard
                 </button>
@@ -420,7 +322,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("Low")}
+                  // onClick={() => fetchMountainsBudget("Low")}
                 >
                   Low
                 </button>
@@ -428,7 +330,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("Medium")}
+                  // onClick={() => fetchMountainsBudget("Medium")}
                 >
                   Medium
                 </button>
@@ -436,7 +338,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  onClick={() => fetchMountainsBudget("High")}
+                  // onClick={() => fetchMountainsBudget("High")}
                 >
                   High
                 </button>
@@ -449,7 +351,7 @@ function Explore() {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={() => fetchMountains()}
+              // onClick={() => fetchMountains()}
             >
               Reset
             </button>

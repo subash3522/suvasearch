@@ -26,23 +26,19 @@ import Explore from "./Pages/Explore";
 import State from "./Context FIles/State";
 
 function App() {
-  const [loginCheck, setLoginCheck] = useState(false);
-
-  const loginClicker = (login) => {
-    setLoginCheck(!loginCheck);
-  };
+ 
   return (
     <>
       <State>
         <Router>
-          <Navbar loginClicker={loginClicker} />
+          <Navbar  />
 
           <Routes>
             <Route
               path="/"
               element={
                 <HomeRouter /> ? (
-                  <HomeRouter loginCheck={loginCheck} />
+                  <HomeRouter />
                 ) : (
                   <Blured />
                 )

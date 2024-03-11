@@ -11,15 +11,15 @@ import {
 import Login from "./Login";
 import Blured from "./Blured";
 import Signup from "./Signup";
-import { useSelector,useDispatch } from "react-redux";
-import { loginToggler } from "../Reducer/Index";
-import { tfTogler } from "../Actioncreator/Index";
+import { useSelector, useDispatch } from "react-redux";
 import { toggler } from "./ReactTooklitFolder/TogglerSlice";
 
 function Homepage({ loginCheck }) {
   const dispatch = useDispatch();
   const loginTogglerState = useSelector((state) => state.togglerr.value);
-  console.log(loginTogglerState);
+  const loginCheckerr = useSelector((state) => state.auth.data);
+  console.log(loginCheckerr);
+  // console.log(loginTogglerState);
   //  const lgntoggler = useSelector((state)=>state.togglerr.value)
   <script>AOS.init();</script>;
   return (
@@ -58,7 +58,7 @@ function Homepage({ loginCheck }) {
               </div>
               <div className="d-flex justify-content-evenly ">
                 <button
-                   onClick={() => dispatch(toggler())}
+                  onClick={() => dispatch(toggler())}
                   className=" p-2  bg-black  text-white  "
                   style={{ width: "120px", border: "solid black 1px" }}
                 >

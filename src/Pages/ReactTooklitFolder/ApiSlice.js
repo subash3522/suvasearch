@@ -4,7 +4,7 @@ import axios from "axios";
 const fetchDesticationPost = createAsyncThunk(
   "ReactTookkitFolder/fetchDestivationPost",
   async () => {
-    const response = axios.get("http://localhost:5001/api/mountains");
+    const response = await axios.get("http://localhost:5001/api/mountains");
     return response.data;
   }
 );
@@ -18,7 +18,7 @@ const showPostSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchDesticationPost.fulfilled, (state, action) => {
-        state.data.push(action.payload);
+        state.data = action.payload;
       })
       .addCase(fetchDesticationPost.rejected, (state) => {
         state.status = "failed";

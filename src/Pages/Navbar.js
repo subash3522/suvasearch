@@ -1,16 +1,9 @@
 import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginToggler } from "../Reducer/Index";
-import { tfTogler } from "../Actioncreator/Index";
 import { Link as Scroollink } from "react-scroll";
 
-// import { Link } from "react-scroll";
-
 function Navbar({ loginClicker }) {
-  const dispatch = useDispatch();
-
   return (
     <>
       <nav
@@ -46,7 +39,7 @@ function Navbar({ loginClicker }) {
               padding: "8px 10px",
             }}
           >
-             <Scroollink
+            <Scroollink
               activeClass="aactive"
               to="Homepage"
               spy={true}
@@ -54,7 +47,7 @@ function Navbar({ loginClicker }) {
               offset={-50} // Adjust offset based on your layout
               duration={50}
             >
-            Home
+              Home
             </Scroollink>
           </div>
           <div
