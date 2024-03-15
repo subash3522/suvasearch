@@ -11,7 +11,6 @@ function Description() {
   const declaredVariable = useContext(myContextVariable);
 
   const [mountainId, setMountainId] = useState([]);
-  const [para, setPara] = useState([]);
 
   useEffect(() => {
     const fetchMountainsId = async (idh) => {
@@ -19,19 +18,18 @@ function Description() {
         const response = await axios.get(
           `http://localhost:5001/mountain/${idh}`
         );
-        setMountainId(response.data);
-
-        setPara(
-          response.data.descriptionContent.replace(/\r\n/g, "\n").split("\n\n")
-        );
+        setMountainId(response.data[0]);
       } catch (error) {
         console.error("Error fetching mountains:", error);
       }
     };
     console.log(declaredVariable.nextVariable);
+  
 
     fetchMountainsId(id);
   }, [id]);
+
+  console.log(mountainId);
   return (
     <>
       <div style={{ maxWidth: "90%", margin: "0 auto", padding: "20px" }}>
@@ -48,9 +46,8 @@ function Description() {
         />
 
         <div style={{ maxWidth: "100%", margin: "0 auto" }}>
-          {para.map((value, index) => (
+          {
             <p
-              key={index}
               style={{
                 color: "black",
                 textAlign: "justify",
@@ -58,9 +55,9 @@ function Description() {
                 lineHeight: "1.6",
               }}
             >
-              {value}
+              {mountainId.descriptionPath}
             </p>
-          ))}
+          }
         </div>
       </div>
     </>

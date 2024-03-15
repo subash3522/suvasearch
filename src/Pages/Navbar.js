@@ -2,8 +2,11 @@ import React from "react";
 import "../Global.css";
 import { Link } from "react-router-dom";
 import { Link as Scroollink } from "react-scroll";
+import { useSelector } from "react-redux";
 
 function Navbar({ loginClicker }) {
+  const auth = useSelector((state) => state.auth.data);
+
   return (
     <>
       <nav
@@ -62,16 +65,7 @@ function Navbar({ loginClicker }) {
             {/* <Link to="/Products" className="text-white text-decoration-none">
               Explore
             </Link> */}
-            <Scroollink
-              activeClass="active"
-              to="Homepage1"
-              spy={true}
-              smooth={true}
-              offset={-50} // Adjust offset based on your layout
-              duration={50}
-            >
-              Categories
-            </Scroollink>
+            <Link to="">Profile</Link>
           </div>
         </div>
       </nav>

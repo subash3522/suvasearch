@@ -6,25 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchDesticationPost } from "./ReactTooklitFolder/ApiSlice";
 
 function Explore() {
-
-
-
   //calling state using redux toolkit
   const mountains = useSelector((state) => state.explore.data);
+  const auth = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDesticationPost());
-    
-  },[]);
-
- 
+  }, []);
 
   //calling state using redux toolkit ends here
-
- 
-
- 
 
   const likeRenderer = () => {
     mountains.forEach((value) => {
@@ -32,49 +23,7 @@ function Explore() {
     });
   };
 
-
-
-  //mountain get with id param:
-
-  const [mountainsId, setMountainsId] = useState([]);
-
-  useEffect(() => {
-    const fetchMountainsId = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/mountain/1");
-      } catch (error) {
-        console.error("Error fetching mountains:", error);
-      }
-    };
-
-    fetchMountainsId();
-  }, []);
-
-  //mountain get with id param ends here
-
-  //mountain get with budget param starts here
-
- 
-
-  //mountain get with budget param ends here
-
-  //login auth stats here
-  const [auth, setAuth] = useState(false);
-  axios.defaults.withCredentials = true;
-
-  useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
-      if (res.data.status === "success") {
-        setAuth(true);
-      } else {
-        console.log(res.data);
-      }
-    });
-  });
-  //login auth ends here
-
   //like post starts here
-  const [userIdForLike, setUserIdForLike] = useState();
 
   const handleOnLike = (postId) => {
     axios
@@ -82,7 +31,7 @@ function Explore() {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
-      .then((res) => {})
+      .then((res) => {likeRenderer()})
       .catch((error) => {
         console.error("Error occurred:", error);
       });
@@ -91,7 +40,6 @@ function Explore() {
   //like post ends here
 
   //save post starts here
-  const [userIdForSave, setUserIdForSave] = useState();
 
   const handleOnSave = (postId) => {
     axios
@@ -140,11 +88,11 @@ function Explore() {
     }
   };
 
-  useEffect(() => {
-    mountains.forEach((value) => {
-      totalLikeHandler(value.ID);
-    });
-  }, [mountains]);
+  // useEffect(() => {
+  //   mountains.forEach((value) => {
+  //     totalLikeHandler(value.ID);
+  //   });
+  // }, [totalLikes]);
 
   //like count storing functionality ends here
 
@@ -389,7 +337,7 @@ function Explore() {
                 className="card-button letter-animation"
                 onClick={() => {
                   handleOnLike(value.ID);
-                  likeRenderer();
+              
                 }}
               >
                 <svg
@@ -407,7 +355,7 @@ function Explore() {
 
               <button
                 className="card-button letter-animation"
-                // onClick={auth ? () => handleOnSave(value.ID) : ""}
+                onClick={ () => handleOnSave(value.ID) }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
