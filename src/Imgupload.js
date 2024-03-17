@@ -49,7 +49,7 @@ function Imgupload() {
     formData.append("description", description);
 
     try {
-      await axios.post("http://localhost:5001/api/addMountain", formData, {
+      await axios.post("https://apitesting-com.onrender.com/api/addMountain", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
@@ -64,7 +64,7 @@ function Imgupload() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
+    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
         setAuth(true);

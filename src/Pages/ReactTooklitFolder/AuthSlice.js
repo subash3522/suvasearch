@@ -4,7 +4,7 @@ import axios from "axios";
 const authCheckerFunction = createAsyncThunk(
   "/ReactToolkitFolder/authCheckerFunctino",
   async () => {
-    const response = await axios.get("http://localhost:5001/suvaauth");
+    const response = await axios.get("https://apitesting-com.onrender.com/suvaauth");
     if (response.data.status ==='success'){
         return true
     }

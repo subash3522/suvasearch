@@ -16,7 +16,7 @@ function Description() {
     const fetchMountainsId = async (idh) => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/mountain/${idh}`
+          `https://apitesting-com.onrender.com/mountain/${idh}`
         );
         setMountainId(response.data[0]);
       } catch (error) {
@@ -40,7 +40,7 @@ function Description() {
             borderRadius: "8px",
             marginBottom: "20px",
           }}
-          src={`http://localhost:5001/${mountainId.photoPath}`}
+          src={`https://apitesting-com.onrender.com/${mountainId.photoPath}`}
           alt={mountainId.mountainName}
           className="card-image"
         />

@@ -29,7 +29,7 @@ function Explore() {
 
   const handleOnLike = (postId) => {
     axios
-      .post("http://localhost:5001/like", {
+      .post("https://apitesting-com.onrender.com/like", {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
@@ -45,7 +45,7 @@ function Explore() {
 
   const handleOnSave = (postId) => {
     axios
-      .post("http://localhost:5001/Save", {
+      .post("https://apitesting-com.onrender.com/Save", {
         userIdForSave: userId,
         postIdForSave: postId,
       })
@@ -82,7 +82,7 @@ function Explore() {
     }
     try {
       const response = await axios.get(
-        `http://localhost:5001/likecounter/${like}`
+        `https://apitesting-com.onrender.com/likecounter/${like}`
       );
       setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
@@ -328,7 +328,7 @@ function Explore() {
             >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
-                src={`http://localhost:5001/${value.photoPath}`}
+                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
                 alt={value.mountainName}
                 className="card-image letter-animation"
               />
