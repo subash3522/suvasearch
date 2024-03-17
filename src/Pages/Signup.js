@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import { loginToggler } from "../Reducer/Index";
 import { tfTogler } from "../Actioncreator/Index";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [login, setLogin] = useState({
     email: "",
@@ -26,31 +28,32 @@ function Signup() {
       .post("http://localhost:5001/suvasearchsignup", login)
       .then((res) => {
         console.log(res.data + "dandanadan");
-        
-        
+        navigate("/login");
       })
       // .catch((err) => console.log(err));
       .catch((error) => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log("Error data:", error.response.data);
-        console.log("Error status:", error.response.status);
-        console.log("Error headers:", error.response.headers);
-        if (error.response.data.error) {
-          console.log("Error message:", error.response.data.error);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log("Error data:", error.response.data);
+          console.log("Error status:", error.response.status);
+          console.log("Error headers:", error.response.headers);
+          if (error.response.data.error) {
+            console.log("Error message:", error.response.data.error);
+          } else {
+            // Handle other types of errors (if any)
+            console.log(
+              "An error occurred, but no specific message was provided"
+            );
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
         } else {
-          // Handle other types of errors (if any)
-          console.log("An error occurred, but no specific message was provided");
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
         }
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log('Error', error.message);
-      }
-    });
+      });
   };
 
   return (
@@ -94,7 +97,7 @@ function Signup() {
                   </h1>
                 </button>
               </div>
-              <div className="modal-body p-5 pt-0">
+              <div className="modal-body p-5 pt-0 ">
                 <form className="">
                   <div className="form-floating mb-3">
                     <input

@@ -13,6 +13,23 @@ function Imgupload() {
   const [photo, setPhoto] = useState(null);
   const [description, setDescription] = useState(null);
 
+
+
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    // Retrieve the data from local storage
+    const storedData = localStorage.getItem("userData");
+    if (storedData) {
+      // Parse the JSON string to an object
+      const parsedData = JSON.parse(storedData);
+      // Set the user ID if it exists in the parsed object
+      if (parsedData && parsedData.userId) {
+        setUserId(parsedData.userId);
+      }
+    }
+  }, []);
+
   const handleFileChange = (e, setter) => {
     const file = e.target.files[0];
     setter(file);
@@ -22,6 +39,7 @@ function Imgupload() {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("userId",userId)
     formData.append("mountainName", mountainName);
     formData.append("weather", weather);
     formData.append("popularity", popularity);
