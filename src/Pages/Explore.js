@@ -4,12 +4,14 @@ import "../Global.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDesticationPost } from "./ReactTooklitFolder/ApiSlice";
+import { useNavigate } from "react-router-dom";
 
 function Explore() {
   //calling state using redux toolkit
   const mountains = useSelector((state) => state.explore.data);
   const auth = useSelector((state) => state.auth.data);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchDesticationPost());
@@ -322,7 +324,7 @@ function Explore() {
             </h3>
             <Link
               className="product-container text-decoration-none text-black"
-              to={auth ? `/Description/${value.ID}` : ""}
+              to={ `/Description/${value.ID}`}
             >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
@@ -336,7 +338,7 @@ function Explore() {
               <div
                 className="card-button letter-animation"
                 onClick={() => {
-                  handleOnLike(value.ID);
+                  auth? handleOnLike(value.ID): navigate('/login') ;
               
                 }}
               >
@@ -355,7 +357,7 @@ function Explore() {
 
               <button
                 className="card-button letter-animation"
-                onClick={ () => handleOnSave(value.ID) }
+                onClick={ () => {auth? handleOnSave(value.ID): navigate('/login') }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

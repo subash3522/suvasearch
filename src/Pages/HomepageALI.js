@@ -24,13 +24,16 @@ function HomepageALI({ loginCheck }) {
   axios.defaults.withCredentials= true;
 
 
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     axios.get("http://localhost:5001/suvalogout")
-    .then(res=>{
-       window.location.reload(true)
-       console.log(res.status);
+    .then(res => {
+        localStorage.removeItem("userData"); 
+        window.location.reload(true);
+        console.log(res.status);
     })
-    .catch(err=>{console.log(err);})
+    .catch(err => {
+        console.log(err);
+    });
 }
   return (
     <>
