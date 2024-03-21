@@ -5,13 +5,28 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDesticationPost } from "./ReactTooklitFolder/ApiSlice";
 import { useNavigate } from "react-router-dom";
+import { filterFunction } from "./ReactTooklitFolder/FilterSlice";
 
 function Explore() {
   //calling state using redux toolkit
   const mountains = useSelector((state) => state.explore.data);
   const auth = useSelector((state) => state.auth.data);
+  const filters = useSelector((state) => state.filters.data);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [filterApplied, setFilterApplied] = useState(false);
+
+  const applyFilterFunction = (column, content) => {
+    dispatch(filterFunction({ column, content }));
+    setFilterApplied(true);
+  };
+
+  const clearFilter = () => {
+    setFilterApplied(false);
+  };
+
+  const displayData = filterApplied ? filters : mountains;
 
   useEffect(() => {
     dispatch(fetchDesticationPost());
@@ -29,11 +44,13 @@ function Explore() {
 
   const handleOnLike = (postId) => {
     axios
-      .post("https://apitesting-com.onrender.com/like", {
+      .post("http://localhost:5001/like", {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
-      .then((res) => {likeRenderer()})
+      .then((res) => {
+        likeRenderer();
+      })
       .catch((error) => {
         console.error("Error occurred:", error);
       });
@@ -45,7 +62,7 @@ function Explore() {
 
   const handleOnSave = (postId) => {
     axios
-      .post("https://apitesting-com.onrender.com/Save", {
+      .post("http://localhost:5001/Save", {
         userIdForSave: userId,
         postIdForSave: postId,
       })
@@ -82,7 +99,7 @@ function Explore() {
     }
     try {
       const response = await axios.get(
-        `https://apitesting-com.onrender.com/likecounter/${like}`
+        `http://localhost:5001/likecounter/${like}`
       );
       setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
@@ -122,7 +139,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("Hot")}
+                  onClick={() => applyFilterFunction("weather", "hot")}
                 >
                   Hot
                 </button>
@@ -130,15 +147,15 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("Medium")}
+                  onClick={() => applyFilterFunction("weather", "moderate")}
                 >
-                  Medium
+                  Moderate
                 </button>
               </li>
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("Cold")}
+                  onClick={() => applyFilterFunction("weather", "cold")}
                 >
                   Cold
                 </button>
@@ -154,95 +171,21 @@ function Explore() {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Difficulty
+              Popularity
             </button>
             <ul className="dropdown-menu">
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountains("Easy")}
-                >
-                  Easy
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("Moderate")}
-                >
-                  Moderate
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("Hard")}
-                >
-                  Hard
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Altitude Filter - Example for another filter */}
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn btn-info dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Altitude
-            </button>
-            <ul className="dropdown-menu">
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("Low")}
-                >
-                  Low
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("Medium")}
-                >
-                  Medium
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("High")}
+                  onClick={() => applyFilterFunction("popularity", "high")}
                 >
                   High
                 </button>
               </li>
-            </ul>
-          </div>
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn btn-warning dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Difficulty
-            </button>
-            <ul className="dropdown-menu">
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountains("Easy")}
-                >
-                  Easy
-                </button>
-              </li>
-              <li>
-                <button
-                  className="dropdown-item"
-                  // onClick={() => fetchMountains("Moderate")}
+                  onClick={() => applyFilterFunction("popularity", "moderate")}
                 >
                   Moderate
                 </button>
@@ -250,9 +193,9 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountains("Hard")}
+                  onClick={() => applyFilterFunction("popularity", "low")}
                 >
-                  Hard
+                  Low
                 </button>
               </li>
             </ul>
@@ -272,7 +215,7 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("Low")}
+                  onClick={() => applyFilterFunction("budget", "low")}
                 >
                   Low
                 </button>
@@ -280,17 +223,80 @@ function Explore() {
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("Medium")}
+                  onClick={() => applyFilterFunction("budget", "moderate")}
                 >
-                  Medium
+                  Moderate
                 </button>
               </li>
               <li>
                 <button
                   className="dropdown-item"
-                  // onClick={() => fetchMountainsBudget("High")}
+                  onClick={() => applyFilterFunction("budget", "high")}
                 >
                   High
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Altitude Filter - Example for another filter */}
+
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-warning dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Category
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "hiking")}
+                >
+                  Hiking
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "touring")}
+                >
+                  Touring
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "climbing")}
+                >
+                  Climbing
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "family time")}
+                >
+                  Family Time
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "biking")}
+                >
+                  Biking
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "religious")}
+                >
+                  Religious
                 </button>
               </li>
             </ul>
@@ -301,7 +307,7 @@ function Explore() {
             <button
               type="button"
               className="btn btn-secondary"
-              // onClick={() => fetchMountains()}
+              onClick={() => clearFilter()}
             >
               Reset
             </button>
@@ -317,18 +323,18 @@ function Explore() {
           gridTemplateColumns: "repeat(auto-fit,279px",
         }}
       >
-        {mountains.map((value) => (
+        {displayData.map((value) => (
           <div className="card-container fade-in" key={value.ID}>
             <h3 className="card-title letter-animation">
               {value.mountainName}
             </h3>
             <Link
               className="product-container text-decoration-none text-black"
-              to={ `/Description/${value.ID}`}
+              to={`/Description/${value.ID}`}
             >
               <img
                 style={{ height: "200px", borderRadius: "8px" }}
-                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
+                src={`http://localhost:5001/${value.photoPath}`}
                 alt={value.mountainName}
                 className="card-image letter-animation"
               />
@@ -338,8 +344,7 @@ function Explore() {
               <div
                 className="card-button letter-animation"
                 onClick={() => {
-                  auth? handleOnLike(value.ID): navigate('/login') ;
-              
+                  auth ? handleOnLike(value.ID) : navigate("/login");
                 }}
               >
                 <svg
@@ -357,7 +362,9 @@ function Explore() {
 
               <button
                 className="card-button letter-animation"
-                onClick={ () => {auth? handleOnSave(value.ID): navigate('/login') }}
+                onClick={() => {
+                  auth ? handleOnSave(value.ID) : navigate("/login");
+                }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -371,6 +378,7 @@ function Explore() {
                 </svg>
               </button>
             </div>
+            <div>Uploaded by:{value.userId}</div>
           </div>
         ))}
       </div>

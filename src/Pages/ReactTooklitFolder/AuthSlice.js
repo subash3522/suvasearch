@@ -4,11 +4,14 @@ import axios from "axios";
 const authCheckerFunction = createAsyncThunk(
   "/ReactToolkitFolder/authCheckerFunctino",
   async () => {
-    const response = await axios.get("https://apitesting-com.onrender.com/suvaauth");
-    if (response.data.status ==='success'){
-        return true
+    const response = await axios.get("http://localhost:5001/suvaauth");
+    if (response.data.status === "success") {
+      return true;
+    } else {
+      localStorage.removeItem("userData");
+
+      return false;
     }
-    else return false
   }
 );
 
@@ -27,12 +30,12 @@ const authSlice = createSlice({
       .addCase(authCheckerFunction.fulfilled, (state, action) => {
         state.data = action.payload;
       })
-      .addCase(authCheckerFunction.rejected, (state,action) => {
+      .addCase(authCheckerFunction.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
   },
 });
 
-export default authSlice.reducer
-export {authCheckerFunction}
+export default authSlice.reducer;
+export { authCheckerFunction };

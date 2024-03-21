@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Global.css";
 import "./Imgupload.css";
+import { useNavigate } from "react-router-dom";
 
 function Imgupload() {
   //new formfield
@@ -13,7 +14,7 @@ function Imgupload() {
   const [photo, setPhoto] = useState(null);
   const [description, setDescription] = useState(null);
 
-
+const navigate=useNavigate()
 
   const [userId, setUserId] = useState("");
 
@@ -38,6 +39,12 @@ function Imgupload() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    if (!auth) {
+
+     navigate('/login')
+    }
+    else{
+
     const formData = new FormData();
     formData.append("userId",userId)
     formData.append("mountainName", mountainName);
@@ -49,13 +56,14 @@ function Imgupload() {
     formData.append("description", description);
 
     try {
-      await axios.post("https://apitesting-com.onrender.com/api/addMountain", formData, {
+      await axios.post("http://localhost:5001/api/addMountain", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
     } catch (error) {
       console.error("Error adding mountain:", error);
     }
+  }
   };
   //newformfield ends here
 
@@ -64,7 +72,7 @@ function Imgupload() {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("https://apitesting-com.onrender.com/suvaauth").then((res) => {
+    axios.get("http://localhost:5001/suvaauth").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
         setAuth(true);

@@ -7,7 +7,7 @@ import "./UserProfile.css";
 import { Link } from "react-router-dom";
 
 function UserProfile() {
-  const {saveId} = useParams();
+  const { saveId } = useParams();
   console.log(saveId);
   const [likedPost, setLikedPost] = useState([]);
 
@@ -15,7 +15,7 @@ function UserProfile() {
     const fetchLikedPost = async (a) => {
       try {
         const response = await axios.get(
-          `https://apitesting-com.onrender.com/profilelike/${a}`
+          `http://localhost:5001/profilelike/${a}`
         );
         setLikedPost(response.data);
         console.log(response.data);
@@ -35,7 +35,7 @@ function UserProfile() {
     const fetchSavedPost = async (a) => {
       try {
         const response = await axios.get(
-          `https://apitesting-com.onrender.com/profilesave/${a}`
+          `http://localhost:5001/profilesave/${a}`
         );
         setSavedPosts(response.data);
         console.log(response.data);
@@ -81,7 +81,7 @@ function UserProfile() {
               className="post-item"
             >
               <img
-                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
+                src={`http://localhost:5001/${value.photoPath}`}
                 alt={value.mountainName}
               />
               <div className="post-details">
@@ -102,7 +102,7 @@ function UserProfile() {
               className="post-item"
             >
               <img
-                src={`https://apitesting-com.onrender.com/${value.photoPath}`}
+                src={`http://localhost:5001/${value.photoPath}`}
                 alt={value.mountainName}
               />
               <div className="post-details">

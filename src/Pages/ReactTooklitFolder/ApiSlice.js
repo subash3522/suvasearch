@@ -4,7 +4,7 @@ import axios from "axios";
 const fetchDesticationPost = createAsyncThunk(
   "ReactTookkitFolder/fetchDestivationPost",
   async () => {
-    const response = await axios.get("https://apitesting-com.onrender.com/api/mountains");
+    const response = await axios.get("http://localhost:5001/api/mountains");
     return response.data;
   }
 );

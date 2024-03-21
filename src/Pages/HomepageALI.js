@@ -25,7 +25,7 @@ function HomepageALI({ loginCheck }) {
 
 
   const handleLogout = () => {
-    axios.get("https://apitesting-com.onrender.com/suvalogout")
+    axios.get("http://localhost:5001/suvalogout")
     .then(res => {
         localStorage.removeItem("userData"); 
         window.location.reload(true);

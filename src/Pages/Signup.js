@@ -15,7 +15,7 @@ function Signup() {
     password: "",
   });
 
-  console.log(login);
+  const [errMess, setErrMess] = useState("");
 
   const handleChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
@@ -25,7 +25,7 @@ function Signup() {
     e.preventDefault();
     axios
       // .post("http://localhost:5001/suvasearchsignup", login)
-      .post("https://apitesting-com.onrender.com/suvasearchsignup", login)
+      .post("http://localhost:5001/suvasearchsignup", login)
       .then((res) => {
         console.log(res.data + "dandanadan");
         navigate("/login");
@@ -40,6 +40,7 @@ function Signup() {
           console.log("Error headers:", error.response.headers);
           if (error.response.data.error) {
             console.log("Error message:", error.response.data.error);
+            setErrMess(error.response.data.error);
           } else {
             // Handle other types of errors (if any)
             console.log(
@@ -131,6 +132,7 @@ function Signup() {
                   <small className="text-body-secondary">
                     By clicking Sign up, you agree to the terms of use.
                   </small>
+                  <div className="text-danger">{errMess}</div>
                   <hr className="my-4" />
                   <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>
 

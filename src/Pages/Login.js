@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { tfTogler } from "../Actioncreator/Index";
 import { toggler } from "./ReactTooklitFolder/TogglerSlice";
+import { authCheckerFunction } from "./ReactTooklitFolder/AuthSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const togglerSwitch = useSelector((state) => 
-    state.togglerr.value
-  );
+  const [errorMes, setErrorMes] = useState("");
+
+  useEffect(() => {
+    dispatch(authCheckerFunction());
+  }, []);
+
+  const togglerSwitch = useSelector((state) => state.togglerr.value);
   console.log(togglerSwitch);
   axios.defaults.withCredentials = true;
 
@@ -27,7 +32,7 @@ const dispatch = useDispatch()
   const onLoginHandle = (e) => {
     e.preventDefault();
     axios
-      .post("https://apitesting-com.onrender.com/suvasearchlogin", loginValue, {
+      .post("http://localhost:5001/suvasearchlogin", loginValue, {
         withCredentials: true,
       })
       .then((res) => {
@@ -35,7 +40,10 @@ const dispatch = useDispatch()
           localStorage.setItem("userData", JSON.stringify(res.data.userData));
           navigate("/");
           window.location.reload(true);
-        } else console.log(res.data.message);
+        } else {
+          console.log(res.data.message);
+          setErrorMes(res.data.message);
+        }
       })
       .catch((error) => {
         console.error("Error occurred:", error);
@@ -113,6 +121,9 @@ const dispatch = useDispatch()
                   <small className="text-body-secondary">
                     By clicking Sign up, you agree to the terms of use.
                   </small>
+                  <div className=" text-danger">
+                    {errorMes}
+                  </div>
                   <hr className="my-4" />
                   <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>
 
