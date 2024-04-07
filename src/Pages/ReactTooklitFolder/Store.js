@@ -4,6 +4,7 @@ import togglerSlice from "./TogglerSlice.js";
 import AuthSlice from "./AuthSlice.js";
 import FilterSlice from "./FilterSlice.js";
 import PostUploadSlice from "./PostUploadSlice.js";
+import UserPostFetchSlice from "./UserPostFetchSlice.js";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     auth: AuthSlice,
     filters: FilterSlice,
     PostUpload: PostUploadSlice,
+    fetchUserPost:UserPostFetchSlice,
   },
 });

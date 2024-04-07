@@ -9,6 +9,23 @@ const postUploadApiFunction = createAsyncThunk(
   }
 );
 
+const editPostApiFunction = createAsyncThunk(
+  "/ReactToolkitFolder/editUploadApiFunction", 
+  async ({postId,data})=>{
+    const response = await axios.put('http://localhost:5001/postuploadEdit/:PostId');
+    return response.data
+  }
+)
+
+
+const deletePostApiFunction = createAsyncThunk(
+
+"/ReactToolKitFolder/deletePostApiFunction", 
+async(data)=> {
+  await axios.delete('http://localhost:5001/postUploadDelete')
+}
+)
+
 const postUploadSlice = createSlice({
   name: "postUpload",
   initialState: { data: [], status: "ideal", error: null },
@@ -28,4 +45,4 @@ const postUploadSlice = createSlice({
 });
 
 export default postUploadSlice.reducer
-export {postUploadApiFunction}
+export {postUploadApiFunction, editPostApiFunction,deletePostApiFunction}
