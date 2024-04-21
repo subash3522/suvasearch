@@ -11,8 +11,8 @@ const postUploadApiFunction = createAsyncThunk(
 
 const editPostApiFunction = createAsyncThunk(
   "/ReactToolkitFolder/editUploadApiFunction", 
-  async ({postId,data})=>{
-    const response = await axios.put('http://localhost:5001/postuploadEdit/:PostId');
+  async (formDataToSend)=>{
+    const response = await axios.put("http://localhost:5001/postuploadEdit", formDataToSend);
     return response.data
   }
 )

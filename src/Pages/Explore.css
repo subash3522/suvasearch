@@ -1,0 +1,65 @@
+.social-card-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .social-card-header {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .social-card-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .social-card-body {
+    padding: 16px;
+  }
+  
+  .social-card-link {
+    display: block;
+  }
+  
+  .social-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .social-card-category {
+    margin-top: 8px;
+  }
+  
+  .social-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .social-card-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .social-card-like,
+  .social-card-save {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+  }
+  
+  .social-card-date {
+    display: flex;
+    align-items: center;
+  }
+  
+  .social-card-date-button {
+    margin-left: 8px;
+    background-color: transparent;
+  }
+   
+  

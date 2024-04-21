@@ -2,17 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const fetchUserPostFunction = createAsyncThunk(
-  "/ReactToolkitFolder/UserPostFetch",
+  "userPosts/fetchById",
   async () => {
     const response = await axios.get("http://localhost:5001/UserPostFetch");
     return response.data;
   }
 );
 
+
 const fetchUserPostSlice = createSlice({
   name: "UserPost",
 
-  initialState: { data: [], status: "pending", error: null },
+  initialState: { data: [], aata: [], status: "pending", error: null },
 
   extraReducers: (builder) => {
     builder
@@ -26,7 +27,8 @@ const fetchUserPostSlice = createSlice({
         state.status = "rejected";
       });
   },
+ 
 });
 
 export default fetchUserPostSlice.reducer;
-export { fetchUserPostFunction };
+export { fetchUserPostFunction};

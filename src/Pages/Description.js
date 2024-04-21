@@ -23,13 +23,33 @@ function Description() {
         console.error("Error fetching mountains:", error);
       }
     };
-    console.log(declaredVariable.nextVariable);
-  
+    // console.log(declaredVariable.nextVariable);
 
     fetchMountainsId(id);
   }, []);
 
-  console.log(mountainId);
+  // console.log(mountainId);
+
+  const [dateData, setDateData] = useState([]);
+
+  const fetchDateData = async (destination) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5001/fetchDate/${destination}`
+      );
+      setDateData(response.data);
+    } catch (error) {
+      console.error("Error fetching date data:", error);
+      // Handle error, e.g., show an error message to the user
+    }
+  };
+ 
+  useEffect(() => {
+    fetchDateData(mountainId.mountainName);
+  }, []);
+
+  console.log("people going", dateData);
+
   return (
     <>
       <div style={{ maxWidth: "90%", margin: "0 auto", padding: "20px" }}>
@@ -59,6 +79,17 @@ function Description() {
             </p>
           }
         </div>
+      </div>
+      <div>
+        <h2>Going Users:</h2>
+        <ul>
+          {dateData.map((data, index) => (
+            <li key={index}>
+              UserID: {data.userId} {"     ....       "}
+              on Date {"     ....       "} {data.date} 
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
