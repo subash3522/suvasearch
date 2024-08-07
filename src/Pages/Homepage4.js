@@ -18,7 +18,7 @@ function Homepage4() {
             <p style={{ fontSize: "0.9rem", width: "80%" }}>
               Our search platform utilizes an advanced algorithm to deliver
               accurate and relevant results, making it easier than ever to find
-              travell, hiking, biking places.
+              travel, hiking, biking places.
             </p>
             <div className="d-flex ">
               <div className=" d-flex flex-column align-items-center">
@@ -50,7 +50,7 @@ function Homepage4() {
         <li>Login to interract with the post</li>
         <li>Recommend best destinations to other</li>
         <li>Subscribe to get new popular place Alerts</li>
-        <li>Post your travell photos</li>
+        <li>Post your travel photos</li>
         <li>And Many more</li>
       </ul>
     </div>

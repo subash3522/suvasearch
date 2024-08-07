@@ -1,10 +1,12 @@
-import { createAsyncThunk, createSlice, createsli } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
+const apiUrl = process.env.REACT_APP_API_ENDPOINT;
 
 const fetchDesticationPost = createAsyncThunk(
   "ReactTookkitFolder/fetchDestivationPost",
   async () => {
-    const response = await axios.get("http://localhost:5001/api/mountains");
+    const response = await axios.get(`${apiUrl}/api/mountains`);
     return response.data;
   }
 );

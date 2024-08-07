@@ -24,7 +24,11 @@ import UserPostUpload from "./UserPostUpload";
 import Description from "./Pages/Description";
 import UserProfile from "./UserProfile";
 import Explore from "./Pages/Explore";
+import UserPosts from "./UserPosts";
+import UserPostsEdit from "./UserPostsEdit";
 import State from "./Context FIles/State";
+import DatePicker from "./Pages/DatePicker";
+import Puk from "./Pages/Puk";
 
 function App() {
   return (
@@ -51,6 +55,13 @@ function App() {
             {/* <Route path="/like/:likeId" element={<UserProfile />}></Route> */}
             <Route path="/profile/:saveId" element={<UserProfile />}></Route>
             <Route path="/Explore" element={<Explore />}></Route>
+            <Route path="/Userposts" element={<UserPosts />}></Route>
+            <Route
+              path="/Userpostsedit/:post_id"
+              element={<UserPostsEdit />}
+            ></Route>
+            <Route path="/DatePicker" element={<DatePicker />}></Route>
+          
           </Routes>
         </Router>
       </State>

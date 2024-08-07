@@ -1,0 +1,49 @@
+.post-card {
+    width: 400px; /* Set the width of the post card */
+    margin: 0 auto; /* Center the post card horizontally */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .user-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .caption {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .interaction {
+    display: flex;
+    align-items: center;
+  }
+  
+  .like-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .like-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .likes-count {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #666;
+  }
+  

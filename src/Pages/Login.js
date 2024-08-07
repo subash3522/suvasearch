@@ -7,6 +7,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   const dispatch = useDispatch();
 
   const [errorMes, setErrorMes] = useState("");
@@ -32,7 +35,7 @@ function Login() {
   const onLoginHandle = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5001/suvasearchlogin", loginValue, {
+      .post(`${apiUrl}/suvasearchlogin`, loginValue, {
         withCredentials: true,
       })
       .then((res) => {

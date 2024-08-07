@@ -41,7 +41,7 @@ function Homepage({ loginCheck }) {
                     fontWeight: "bold",
                   }}
                 >
-                  Explore Behond Limits.
+                  Explore Beyond the Limits.
                 </h1>
                 <p
                   className="text-left mt-3"
@@ -69,10 +69,10 @@ function Homepage({ loginCheck }) {
                   style={{ width: "110px", border: "solid white 1px" }}
                 >
                   <Link
-                    to="/Signup"
+                    to="/Explore"
                     style={{ color: "black", textDecoration: "none" }}
                   >
-                    Register
+                    Explore
                   </Link>
                 </button>
               </div>

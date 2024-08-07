@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 const authCheckerFunction = createAsyncThunk(
   "/ReactToolkitFolder/authCheckerFunctino",
   async () => {
-    const response = await axios.get("http://localhost:5001/suvaauth");
+    const response = await axios.get(`${apiUrl}/suvaauth`);
     if (response.data.status === "success") {
       return true;
     } else {

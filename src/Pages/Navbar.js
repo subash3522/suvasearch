@@ -96,7 +96,7 @@ function Navbar({ loginClicker }) {
               {/* <Link to="/Products" className="text-white text-decoration-none">
             Explore
           </Link> */}
-              <Link className="text-white text-decoration-none" to="/login">Login</Link>
+              <Link className="text-white text-decoration-none" to="/login">Profile</Link>
             </div>
           )}
         </div>

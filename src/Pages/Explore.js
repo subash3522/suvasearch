@@ -11,6 +11,9 @@ import DatePicker from "./DatePicker";
 
 
 function Explore() {
+
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   //calling state using redux toolkit
   const mountains = useSelector((state) => state.explore.data);
   const auth = useSelector((state) => state.auth.data);
@@ -49,7 +52,7 @@ function Explore() {
 
   const handleOnLike = (postId) => {
     axios
-      .post("http://localhost:5001/like", {
+      .post(`${apiUrl}/like`, {
         userIdForLIke: userId,
         postIdForLike: postId,
       })
@@ -67,7 +70,7 @@ function Explore() {
 
   const handleOnSave = (postId) => {
     axios
-      .post("http://localhost:5001/Save", {
+      .post(`${apiUrl}/Save`, {
         userIdForSave: userId,
         postIdForSave: postId,
       })
@@ -110,7 +113,7 @@ function Explore() {
     }
     try {
       const response = await axios.get(
-        `http://localhost:5001/likecounter/${like}`
+        `${apiUrl}/likecounter/${like}`
       );
       setTotalLikes((prev) => ({ ...prev, [like]: response.data.length }));
     } catch (error) {
@@ -139,6 +142,196 @@ function Explore() {
           </div>
         </div>
 
+                {/* Weather Filter */}
+                <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-danger dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Weather
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("weather", "hot")}
+                >
+                  Hot
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("weather", "moderate")}
+                >
+                  Moderate
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("weather", "cold")}
+                >
+                  Cold
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Difficulty Filter - Example for another filter */}
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-warning dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Popularity
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("popularity", "high")}
+                >
+                  High
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("popularity", "moderate")}
+                >
+                  Moderate
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("popularity", "low")}
+                >
+                  Low
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Altitude Filter - Example for another filter */}
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-info dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Budget
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("budget", "low")}
+                >
+                  Low
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("budget", "moderate")}
+                >
+                  Moderate
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("budget", "high")}
+                >
+                  High
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Altitude Filter - Example for another filter */}
+
+          <div className="btn-group">
+            <button
+              type="button"
+              className="btn btn-warning dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Category
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "hiking")}
+                >
+                  Hiking
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "touring")}
+                >
+                  Touring
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "climbing")}
+                >
+                  Climbing
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "family time")}
+                >
+                  Family Time
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "biking")}
+                >
+                  Biking
+                </button>
+              </li>
+              <li>
+                <button
+                  className="dropdown-item"
+                  onClick={() => applyFilterFunction("category", "religious")}
+                >
+                  Religious
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Reset Button */}
+          <div>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => clearFilter()}
+            >
+              Reset
+            </button>
+          </div>
+        
+     
+
         <div
           className="container-fluid flex-wrap"
           style={{
@@ -160,7 +353,7 @@ function Explore() {
                   to={`/Description/${value.ID}`}
                 >
                   <img
-                    src={`http://localhost:5001/${value.photoPath}`}
+                    src={`${apiUrl}/${value.photoPath}`}
                     alt={value.mountainName}
                     className="social-card-image letter-animation"
                   />

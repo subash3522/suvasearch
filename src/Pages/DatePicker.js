@@ -10,10 +10,12 @@ function CustomDatePicker({ postId, destination }) {
     setSelectedDate(date);
   };
 
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   const handleSendDateToBackend = (postId, destination) => {
     if (selectedDate) {
       axios
-        .post(`http://localhost:5001/selectdate/${postId}/${destination}`, {
+        .post(`${apiUrl}/selectdate/${postId}/${destination}`, {
           date: selectedDate,
           userId: 5,
         })
@@ -37,6 +39,9 @@ function CustomDatePicker({ postId, destination }) {
       <button onClick={() => handleSendDateToBackend(postId, destination)}>
         OK
       </button>
+
+      
+
     </>
   );
 }

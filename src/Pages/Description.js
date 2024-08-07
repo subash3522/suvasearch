@@ -8,6 +8,8 @@ import myContextVariable from "../Context FIles/Context";
 function Description() {
   const { id } = useParams();
 
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   const declaredVariable = useContext(myContextVariable);
 
   const [mountainId, setMountainId] = useState([]);
@@ -16,7 +18,7 @@ function Description() {
     const fetchMountainsId = async (idh) => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/mountain/${idh}`
+          `${apiUrl}/mountain/${idh}`
         );
         setMountainId(response.data[0]);
       } catch (error) {
@@ -35,7 +37,7 @@ function Description() {
   const fetchDateData = async (destination) => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/fetchDate/${destination}`
+        `${apiUrl}/fetchDate/${destination}`
       );
       setDateData(response.data);
     } catch (error) {
@@ -48,7 +50,9 @@ function Description() {
     fetchDateData(mountainId.mountainName);
   }, []);
 
-  console.log("people going", dateData);
+  // console.log("people going", dateData);
+
+  console.log(mountainId.photoPath);
 
   return (
     <>
@@ -60,7 +64,7 @@ function Description() {
             borderRadius: "8px",
             marginBottom: "20px",
           }}
-          src={`http://localhost:5001/${mountainId.photoPath}`}
+          src={`${apiUrl}/${mountainId.photoPath}`}
           alt={mountainId.mountainName}
           className="card-image"
         />

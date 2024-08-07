@@ -23,7 +23,7 @@ function Homepage3() {
             <p style={{ fontSize: "0.9rem", width: "80%" }}>
               Our search platform utilizes an advanced algorithm to deliver
               accurate and relevant results, making it easier than ever to find
-              travell, hiking, biking places.
+              travel, hiking, biking places.
             </p>
             <div className="d-flex ">
               <div className=" d-flex flex-column align-items-center">

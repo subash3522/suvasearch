@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 const fetchUserNameByIdFunction = createAsyncThunk(
   "/ReactToolKitFolder/fetchUserNameById",
   async (userId) => {
     const response = await axios.get(
-      `http://localhost:5001/fetchUserName/${userId}`
+      `${apiUrl}/fetchUserName/${userId}`
     );
     return response.data;
   }

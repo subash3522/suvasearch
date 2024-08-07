@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 const fetchUserPostFunction = createAsyncThunk(
   "userPosts/fetchById",
   async () => {
-    const response = await axios.get("http://localhost:5001/UserPostFetch");
+    const response = await axios.get(`${apiUrl}/UserPostFetch`);
     return response.data;
   }
 );

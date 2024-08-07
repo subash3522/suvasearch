@@ -11,11 +11,13 @@ function UserProfile() {
   console.log(saveId);
   const [likedPost, setLikedPost] = useState([]);
 
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   useEffect(() => {
     const fetchLikedPost = async (a) => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/profilelike/${a}`
+          `${apiUrl}/profilelike/${a}`
         );
         setLikedPost(response.data);
         console.log(response.data);
@@ -35,7 +37,7 @@ function UserProfile() {
     const fetchSavedPost = async (a) => {
       try {
         const response = await axios.get(
-          `http://localhost:5001/profilesave/${a}`
+          `${apiUrl}/profilesave/${a}`
         );
         setSavedPosts(response.data);
         console.log(response.data);
@@ -81,7 +83,7 @@ function UserProfile() {
               className="post-item"
             >
               <img
-                src={`http://localhost:5001/${value.photoPath}`}
+                src={`${apiUrl}/${value.photoPath}`}
                 alt={value.mountainName}
               />
               <div className="post-details">
@@ -102,7 +104,7 @@ function UserProfile() {
               className="post-item"
             >
               <img
-                src={`http://localhost:5001/${value.photoPath}`}
+                src={`${apiUrl}/${value.photoPath}`}
                 alt={value.mountainName}
               />
               <div className="post-details">

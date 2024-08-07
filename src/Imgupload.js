@@ -5,6 +5,9 @@ import "./Imgupload.css";
 import { useNavigate } from "react-router-dom";
 
 function Imgupload() {
+
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   //new formfield
   const [mountainName, setMountainName] = useState("");
   const [weather, setweather] = useState("");
@@ -56,7 +59,7 @@ const navigate=useNavigate()
     formData.append("description", description);
 
     try {
-      await axios.post("http://localhost:5001/api/addMountain", formData, {
+      await axios.post(`${apiUrl}/api/addMountain`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("Mountain added successfully");
@@ -72,7 +75,7 @@ const navigate=useNavigate()
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    axios.get("http://localhost:5001/suvaauth").then((res) => {
+    axios.get(`${apiUrl}/suvaauth`).then((res) => {
       if (res.data.status === "success") {
         console.log(res.data);
         setAuth(true);

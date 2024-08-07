@@ -7,6 +7,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
+
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,7 +28,7 @@ function Signup() {
     e.preventDefault();
     axios
       // .post("http://localhost:5001/suvasearchsignup", login)
-      .post("http://localhost:5001/suvasearchsignup", login)
+      .post(`${apiUrl}/suvasearchsignup`, login)
       .then((res) => {
         console.log(res.data + "dandanadan");
         navigate("/login");

@@ -18,23 +18,25 @@ import { tfTogler } from "../Actioncreator/Index";
 import axios from "axios";
 
 function HomepageALI({ loginCheck }) {
+  const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
   // const dispatch = useDispatch();
   const loginTogglerState = useSelector((state) => state.xyz);
   <script>AOS.init();</script>;
-  axios.defaults.withCredentials= true;
-
+  axios.defaults.withCredentials = true;
 
   const handleLogout = () => {
-    axios.get("http://localhost:5001/suvalogout")
-    .then(res => {
-        localStorage.removeItem("userData"); 
+    axios
+      .get(`${apiUrl}/suvalogout`)
+      .then((res) => {
+        localStorage.removeItem("userData");
         window.location.reload(true);
         console.log(res.status);
-    })
-    .catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
-    });
-}
+      });
+  };
   return (
     <>
       <div className="imagepreloader" />
@@ -65,7 +67,8 @@ function HomepageALI({ loginCheck }) {
                   }}
                 >
                   {" "}
-                  Discover new horizons and create unforgettable memories. Your adventure starts here.
+                  Discover new horizons and create unforgettable memories. Your
+                  adventure starts here.
                 </p>
               </div>
               <div className="d-flex justify-content-evenly ">
@@ -77,11 +80,12 @@ function HomepageALI({ loginCheck }) {
                   Welcome to the home
                 </button>
                 <button
-             onClick={handleLogout}
-             className="  p-2  bg-transparent text-black  "
-             style={{ width: "110px", border: "solid white 1px" }}
-             >Logout</button>
-               
+                  onClick={handleLogout}
+                  className="  p-2  bg-transparent text-black  "
+                  style={{ width: "110px", border: "solid white 1px" }}
+                >
+                  Logout
+                </button>
               </div>
               {/* <form className="d-flex mt-3" role="search">
                 <input
@@ -144,4 +148,3 @@ function HomepageALI({ loginCheck }) {
 }
 
 export default HomepageALI;
-

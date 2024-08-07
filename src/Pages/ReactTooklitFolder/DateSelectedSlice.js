@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const apiUrl = process.env.REACT_APP_API_ENDPOINT;
+
 const fetchSelectedDateFunction = createAsyncThunk(
   "/ReactToolKitFolder/fetchUserNameById",
   async (destination) => {
-    const response = await axios.get(`http://localhost:5001/fetchDate/${destination}`);
+    const response = await axios.get(`${apiUrl}/fetchDate/${destination}`);
     return response.data;
   }
 );
